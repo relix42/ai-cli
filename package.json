@@ -1,6 +1,6 @@
 {
-  "name": "@google/gemini-cli",
-  "version": "0.1.13",
+  "name": "@relix42/ai-cli",
+  "version": "0.1.13-fork.1",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -11,7 +11,7 @@
   "private": "true",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/google-gemini/gemini-cli.git"
+    "url": "git+https://github.com/relix42/ai-cli.git"
   },
   "config": {
     "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.1.13"
@@ -50,6 +50,7 @@
     "clean": "node scripts/clean.js"
   },
   "bin": {
+    "ai-cli": "bundle/gemini.js",
     "gemini": "bundle/gemini.js"
   },
   "files": [

@@ -1,11 +1,15 @@
-# Gemini CLI
+# AI CLI
 
-[![Gemini CLI CI](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml)
+[![AI CLI CI](https://github.com/relix42/ai-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/relix42/ai-cli/actions/workflows/ci.yml)
 
-![Gemini CLI Screenshot](./docs/assets/gemini-screenshot.png)
+![AI CLI Screenshot](./docs/assets/gemini-screenshot.png)
 
-This repository contains the Gemini CLI, a command-line AI workflow tool that connects to your
+This repository contains the AI CLI, a customized fork of the Gemini CLI - a command-line AI workflow tool that connects to your
 tools, understands your code and accelerates your workflows.
+
+## About This Fork
+
+This is a customized version of the [Google Gemini CLI](https://github.com/google-gemini/gemini-cli) with additional features and configurations tailored for enhanced AI development workflows.
 
 With the Gemini CLI you can:
 
