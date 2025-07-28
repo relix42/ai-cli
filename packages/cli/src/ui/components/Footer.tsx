@@ -12,7 +12,7 @@ import { ConsoleSummaryDisplay } from './ConsoleSummaryDisplay.js';
 import process from 'node:process';
 import Gradient from 'ink-gradient';
 import { MemoryUsageDisplay } from './MemoryUsageDisplay.js';
-import { isUsingChatCLI, getTokenCountInfo, formatTokenCount } from '../utils/modelDisplay.js';
+import { isUsingChatCLI, getTokenCountInfo, formatTokenCount, getDisplayModel } from '../utils/modelDisplay.js';
 
 interface FooterProps {
   config: Config;
@@ -47,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({
   inputTokens = 0,
   outputTokens = 0,
 }) => {
-  const displayModel = config.getModel();
+  const displayModel = getDisplayModel(config.getModel());
   const isUsingChatProvider = isUsingChatCLI();
   const tokenInfo = getTokenCountInfo(inputTokens, outputTokens);
   const limit = tokenLimit(displayModel);
