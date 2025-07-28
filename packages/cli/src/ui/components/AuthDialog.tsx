@@ -69,14 +69,14 @@ export function AuthDialog({
     return null;
   });
   // GrooveForge: Focus on local and independent AI providers
-  const items = [
+  const items: Array<{ label: string; value: string }> = [
     {
       label: 'Local AI (Ollama) - Recommended',
-      value: 'OLLAMA' as AuthType,
+      value: 'OLLAMA',
     },
     {
       label: 'Claude API',
-      value: 'CLAUDE' as AuthType,
+      value: 'CLAUDE',
     },
     {
       label: 'Use Gemini API Key (Legacy)',
@@ -91,6 +91,9 @@ export function AuthDialog({
         ]
       : []),
   ];
+  
+  // Debug: Log the items array
+  console.log('[GrooveForge Debug] Auth items:', items.map(item => ({ label: item.label, value: item.value })));
 
   const initialAuthIndex = items.findIndex((item) => {
     if (settings.merged.selectedAuthType) {
@@ -153,9 +156,9 @@ export function AuthDialog({
       </Box>
       <Box marginTop={1}>
         <RadioButtonSelect
-          items={items as any}
+          items={items}
           initialIndex={initialAuthIndex}
-          onSelect={handleAuthSelect as any}
+          onSelect={handleAuthSelect}
           isFocused={true}
         />
       </Box>
