@@ -16,7 +16,7 @@
 - **Project Emoji**: 🤖 → 🎵⚒️
 - **Repository**: Updated to `grooveforge`
 - **Documentation**: Comprehensive rebranding throughout
-- **Startup Script**: `start_ai_cli.sh` → `start_grooveforge.sh`
+- **Startup Script**: `start_ai_cli.sh` → `gf.sh`
 
 ### ✅ **Phase 2: Local AI Integration Complete**
 - **Ollama Client**: Full implementation with streaming support
@@ -66,7 +66,7 @@ export CLAUDE_MODEL="claude-3-sonnet-20240229"  # optional
 ### **Usage**
 ```bash
 # Start GrooveForge
-./start_grooveforge.sh
+./gf.sh
 
 # Test functionality
 /testchat Hello, can you help me with coding?

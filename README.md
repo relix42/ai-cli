@@ -62,7 +62,7 @@ With GrooveForge you can:
    ```bash
    npm start
    # or use the enhanced startup script
-   ./start_grooveforge.sh
+   ./gf.sh
    ```
 
 ### Configuration

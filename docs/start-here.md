@@ -41,7 +41,7 @@
 cd ai-cli
 
 # Enhanced startup (recommended)
-./start_grooveforge.sh
+./gf.sh
 
 # Or manual setup
 npm install
@@ -208,6 +208,6 @@ Update sessions regularly with progress and changes.
 
 ---
 
-**Ready to start developing? Run `./start_grooveforge.sh` and begin enhancing GrooveForge!**
+**Ready to start developing? Run `./gf.sh` and begin enhancing GrooveForge!**
 
 🎵⚒️ Forging ahead with precision and care SamuelBlue

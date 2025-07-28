@@ -44,7 +44,7 @@ ${forkInfo.features.map(feature => `• ${feature}`).join('\n')}
 **Usage:**
 • Use \`grooveforge\` command for full interface
 • Use \`groove\` command for quick access
-• Run \`./start_grooveforge.sh\` for guided setup
+• Run \`./gf.sh\` for guided setup
 
 **Find Your Groove:**
 GrooveForge helps you find your development rhythm with AI assistance.
