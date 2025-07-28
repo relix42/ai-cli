@@ -343,7 +343,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
           if (isPaidTier) {
             message = `⚡ You have reached your daily ${currentModel} quota limit.
 ⚡ Automatically switching from ${currentModel} to ${fallbackModel} for the remainder of this session.
-⚡ To continue accessing the ${currentModel} model today, consider using /auth to switch to using a paid API key from AI Studio at https://aistudio.google.com/apikey`;
+⚡ Consider using local AI providers like Ollama for unlimited usage.`;
           } else {
             message = `⚡ You have reached your daily ${currentModel} quota limit.
 ⚡ Automatically switching from ${currentModel} to ${fallbackModel} for the remainder of this session.
@@ -355,7 +355,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
           if (isPaidTier) {
             message = `⚡ You have reached your daily quota limit.
 ⚡ Automatically switching from ${currentModel} to ${fallbackModel} for the remainder of this session.
-⚡ To continue accessing the ${currentModel} model today, consider using /auth to switch to using a paid API key from AI Studio at https://aistudio.google.com/apikey`;
+⚡ Consider using local AI providers like Ollama for unlimited usage.`;
           } else {
             message = `⚡ You have reached your daily quota limit.
 ⚡ Automatically switching from ${currentModel} to ${fallbackModel} for the remainder of this session.
@@ -368,7 +368,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
             // Default fallback message for other cases (like consecutive 429s)
             message = `⚡ Automatically switching from ${currentModel} to ${fallbackModel} for faster responses for the remainder of this session.
 ⚡ Possible reasons for this are that you have received multiple consecutive capacity errors or you have reached your daily ${currentModel} quota limit
-⚡ To continue accessing the ${currentModel} model today, consider using /auth to switch to using a paid API key from AI Studio at https://aistudio.google.com/apikey`;
+⚡ Consider using local AI providers like Ollama for unlimited usage.`;
           } else {
             // Default fallback message for other cases (like consecutive 429s)
             message = `⚡ Automatically switching from ${currentModel} to ${fallbackModel} for faster responses for the remainder of this session.

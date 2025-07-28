@@ -39,7 +39,7 @@ export interface HttpOptions {
   headers?: Record<string, string>;
 }
 
-export const CODE_ASSIST_ENDPOINT = 'https://cloudcode-pa.googleapis.com';
+export const CODE_ASSIST_ENDPOINT = 'https://localhost:8080'; // GrooveForge: Disabled Google Code Assist
 export const CODE_ASSIST_API_VERSION = 'v1internal';
 
 export class CodeAssistServer implements ContentGenerator {
@@ -54,27 +54,13 @@ export class CodeAssistServer implements ContentGenerator {
   async generateContentStream(
     req: GenerateContentParameters,
   ): Promise<AsyncGenerator<GenerateContentResponse>> {
-    const resps = await this.requestStreamingPost<CaGenerateContentResponse>(
-      'streamGenerateContent',
-      toGenerateContentRequest(req, this.projectId, this.sessionId),
-      req.config?.abortSignal,
-    );
-    return (async function* (): AsyncGenerator<GenerateContentResponse> {
-      for await (const resp of resps) {
-        yield fromGenerateContentResponse(resp);
-      }
-    })();
+    throw new Error('GrooveForge: Google Code Assist is disabled. Use local AI providers instead.');
   }
 
   async generateContent(
     req: GenerateContentParameters,
   ): Promise<GenerateContentResponse> {
-    const resp = await this.requestPost<CaGenerateContentResponse>(
-      'generateContent',
-      toGenerateContentRequest(req, this.projectId, this.sessionId),
-      req.config?.abortSignal,
-    );
-    return fromGenerateContentResponse(resp);
+    throw new Error('GrooveForge: Google Code Assist is disabled. Use local AI providers instead.');
   }
 
   async onboardUser(

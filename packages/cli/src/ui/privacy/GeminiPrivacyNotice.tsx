@@ -41,7 +41,7 @@ export const GeminiPrivacyNotice = ({ onExit }: GeminiPrivacyNoticeProps) => {
         https://ai.google.dev/docs/gemini_api_overview
       </Text>
       <Text>
-        <Text color={Colors.AccentRed}>[2]</Text> https://aistudio.google.com/
+        <Text color={Colors.AccentRed}>[2]</Text> GrooveForge operates locally
       </Text>
       <Text>
         <Text color={Colors.AccentGreen}>[3]</Text>{' '}
