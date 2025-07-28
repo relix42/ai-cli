@@ -139,7 +139,34 @@ export function AuthDialog({
   const handleAuthSelect = (authMethod: AuthType | string) => {
     const error = validateAuthMethod(authMethod as string);
     if (error) {
-      setErrorMessage(error);
+      // Check if this is a setup request
+      if (error.startsWith('SETUP_REQUIRED:')) {
+        const provider = error.split(':')[1];
+        if (provider === 'OLLAMA') {
+          setErrorMessage(
+            '🦙 Ollama Setup Required\n\n' +
+            'To use Ollama (recommended for privacy), please:\n\n' +
+            '1. Install Ollama: https://ollama.ai\n' +
+            '2. Run: ollama pull llama3.2\n' +
+            '3. Set environment variables:\n' +
+            '   export CHAT_CLI_PROVIDER="ollama"\n' +
+            '   export OLLAMA_MODEL="llama3.2"\n\n' +
+            'Then restart GrooveForge with: ./gf.sh'
+          );
+        } else if (provider === 'CLAUDE') {
+          setErrorMessage(
+            '🤖 Claude API Setup Required\n\n' +
+            'To use Claude API, please:\n\n' +
+            '1. Get API key: https://console.anthropic.com\n' +
+            '2. Set environment variables:\n' +
+            '   export CHAT_CLI_PROVIDER="claude"\n' +
+            '   export CLAUDE_API_KEY="your_api_key_here"\n\n' +
+            'Then restart GrooveForge with: ./gf.sh'
+          );
+        }
+      } else {
+        setErrorMessage(error);
+      }
     } else {
       setErrorMessage(null);
       onSelect(authMethod as AuthType, SettingScope.User);

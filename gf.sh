@@ -40,11 +40,13 @@ if [ ! -d "node_modules" ]; then
 fi
 
 # Check for API key configuration
-if [ -z "$CHAT_CLI_PROVIDER" ]; then
-    echo "⚠️  No provider configured. Please set up Ollama or Claude:"
-    echo "   For Ollama: export CHAT_CLI_PROVIDER=\"ollama\" && export OLLAMA_MODEL=\"llama2\""
-    echo "   For Claude: export CHAT_CLI_PROVIDER=\"claude\" && export CLAUDE_API_KEY=\"your_key\""
-    echo "   Then find your groove and start forging with AI!"
+if [ -z "$CHAT_CLI_PROVIDER" ] && [ -z "$GEMINI_API_KEY" ]; then
+    echo "🎯 No provider configured - launching interactive setup..."
+    echo "   GrooveForge will guide you through provider selection"
+    # Force interactive mode when no provider is configured
+    FORCE_INTERACTIVE="--prompt-interactive"
+else
+    FORCE_INTERACTIVE=""
 fi
 
 # Build if needed
@@ -57,4 +59,4 @@ echo "🚀 Launching GrooveForge..."
 echo ""
 
 # Start the CLI - use -- to separate npm args from application args
-npm start -- "$@"
+npm start -- $FORCE_INTERACTIVE "$@"

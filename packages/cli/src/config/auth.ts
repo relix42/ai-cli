@@ -14,36 +14,17 @@ export const validateAuthMethod = (authMethod: string): string | null => {
   if (authMethod === 'OLLAMA') {
     // Check if Ollama is configured
     if (process.env.CHAT_CLI_PROVIDER !== 'ollama') {
-      // If OLLAMA is selected but not configured, show comprehensive options
-      return (
-        'Ollama is selected but not configured. Please set one of the following environment variables:\n' +
-        '  • CHAT_CLI_PROVIDER=ollama (for local Ollama)\n' +
-        '  • CHAT_CLI_PROVIDER=claude (for Claude API)\n' +
-        '  • GEMINI_API_KEY (for Google Gemini)\n' +
-        '  • GOOGLE_GENAI_USE_VERTEXAI=true (for Vertex AI)\n' +
-        '  • GOOGLE_GENAI_USE_GCA=true (for Google Cloud Auth)\n\n' +
-        'Or run the CLI interactively to change your auth method.'
-      );
+      // Return special marker to trigger setup dialog
+      return 'SETUP_REQUIRED:OLLAMA';
     }
     return null;
   }
   
   if (authMethod === 'CLAUDE') {
     // Check if Claude is configured
-    if (process.env.CHAT_CLI_PROVIDER !== 'claude') {
-      // If CLAUDE is selected but not configured, show comprehensive options
-      return (
-        'Claude is selected but not configured. Please set one of the following environment variables:\n' +
-        '  • CHAT_CLI_PROVIDER=claude (for Claude API)\n' +
-        '  • CHAT_CLI_PROVIDER=ollama (for local Ollama)\n' +
-        '  • GEMINI_API_KEY (for Google Gemini)\n' +
-        '  • GOOGLE_GENAI_USE_VERTEXAI=true (for Vertex AI)\n' +
-        '  • GOOGLE_GENAI_USE_GCA=true (for Google Cloud Auth)\n\n' +
-        'Or run the CLI interactively to change your auth method.'
-      );
-    }
-    if (!process.env.CLAUDE_API_KEY) {
-      return 'CLAUDE_API_KEY environment variable not found. Add that to your environment and try again!';
+    if (process.env.CHAT_CLI_PROVIDER !== 'claude' || !process.env.CLAUDE_API_KEY) {
+      // Return special marker to trigger setup dialog
+      return 'SETUP_REQUIRED:CLAUDE';
     }
     return null;
   }

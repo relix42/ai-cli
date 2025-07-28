@@ -1,0 +1,18 @@
+# GrooveForge Initial Prompts for Development
+# Lines starting with # are comments and will be ignored
+# Each non-empty line is treated as a separate prompt
+
+# Show available tools and commands
+/tools list
+
+# Display current project status
+What is the current status of the GrooveForge project?
+
+# Show recent changes
+What are the recent changes in this codebase?
+
+# Check for any issues or TODOs
+Are there any TODO comments or known issues in the codebase?
+
+# Show project structure overview
+Please analyze the project structure and explain the main components.
