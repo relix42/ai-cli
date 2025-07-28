@@ -9,6 +9,7 @@ import { SlashCommand } from '../ui/commands/types.js';
 import { Config } from '@google/gemini-cli-core';
 import { aboutCommand } from '../ui/commands/aboutCommand.js';
 import { authCommand } from '../ui/commands/authCommand.js';
+import { forkCommand } from '../ui/commands/forkCommand.js';
 import { bugCommand } from '../ui/commands/bugCommand.js';
 import { chatCommand } from '../ui/commands/chatCommand.js';
 import { clearCommand } from '../ui/commands/clearCommand.js';
@@ -48,6 +49,7 @@ export class BuiltinCommandLoader implements ICommandLoader {
     const allDefinitions: Array<SlashCommand | null> = [
       aboutCommand,
       authCommand,
+      forkCommand,
       bugCommand,
       chatCommand,
       clearCommand,
