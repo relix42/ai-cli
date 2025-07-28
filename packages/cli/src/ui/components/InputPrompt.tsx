@@ -290,7 +290,7 @@ export const InputPrompt: React.FC<InputPromptProps> = ({
       }
 
       // Newline insertion
-      if (key.name === 'return' && (key.ctrl || key.meta || key.paste)) {
+      if (key.name === 'return' && (key.ctrl || key.meta || key.shift || key.paste)) {
         buffer.newline();
         return;
       }

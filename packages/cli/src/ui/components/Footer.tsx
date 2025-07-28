@@ -12,6 +12,7 @@ import { ConsoleSummaryDisplay } from './ConsoleSummaryDisplay.js';
 import process from 'node:process';
 import Gradient from 'ink-gradient';
 import { MemoryUsageDisplay } from './MemoryUsageDisplay.js';
+import { getDisplayModel, isUsingChatCLI, getTokenCountInfo, formatTokenCount } from '../utils/modelDisplay.js';
 
 interface FooterProps {
   model: string;
@@ -26,6 +27,8 @@ interface FooterProps {
   promptTokenCount: number;
   nightly: boolean;
   vimMode?: string;
+  inputTokens?: number;
+  outputTokens?: number;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -41,7 +44,12 @@ export const Footer: React.FC<FooterProps> = ({
   promptTokenCount,
   nightly,
   vimMode,
+  inputTokens = 0,
+  outputTokens = 0,
 }) => {
+  const displayModel = getDisplayModel(model);
+  const isUsingChatProvider = isUsingChatCLI();
+  const tokenInfo = getTokenCountInfo(inputTokens, outputTokens);
   const limit = tokenLimit(model);
   const percentage = promptTokenCount / limit;
 
@@ -96,10 +104,22 @@ export const Footer: React.FC<FooterProps> = ({
       <Box alignItems="center">
         <Text color={Colors.AccentBlue}>
           {' '}
-          {model}{' '}
-          <Text color={Colors.Gray}>
-            ({((1 - percentage) * 100).toFixed(0)}% context left)
-          </Text>
+          {displayModel}{' '}
+          {!isUsingChatProvider && (
+            <Text color={Colors.Gray}>
+              ({((1 - percentage) * 100).toFixed(0)}% context left)
+            </Text>
+          )}
+          {isUsingChatProvider && tokenInfo.showTokens && (
+            <Text color={Colors.Gray}>
+              ({formatTokenCount(tokenInfo.inputTokens, tokenInfo.outputTokens)})
+            </Text>
+          )}
+          {isUsingChatProvider && !tokenInfo.showTokens && (
+            <Text color={Colors.Gray}>
+              (Chat CLI)
+            </Text>
+          )}
         </Text>
         {corgiMode && (
           <Text>
