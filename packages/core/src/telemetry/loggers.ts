@@ -38,6 +38,7 @@ import {
 import { isTelemetrySdkInitialized } from './sdk.js';
 import { uiTelemetryService, UiEvent } from './uiTelemetry.js';
 import { ClearcutLogger } from './clearcut-logger/clearcut-logger.js';
+import { LocalLogger } from '../local-telemetry/LocalLogger.js';
 import { safeJsonStringify } from '../utils/safeJsonStringify.js';
 
 const shouldLogUserPrompts = (config: Config): boolean =>
@@ -54,6 +55,7 @@ export function logCliConfiguration(
   event: StartSessionEvent,
 ): void {
   ClearcutLogger.getInstance(config)?.logStartSessionEvent(event);
+  LocalLogger.getInstance(config).logStartSessionEvent(event);
   if (!isTelemetrySdkInitialized()) return;
 
   const attributes: LogAttributes = {
@@ -83,6 +85,7 @@ export function logCliConfiguration(
 
 export function logUserPrompt(config: Config, event: UserPromptEvent): void {
   ClearcutLogger.getInstance(config)?.logNewPromptEvent(event);
+  LocalLogger.getInstance(config).logNewPromptEvent(event);
   if (!isTelemetrySdkInitialized()) return;
 
   const attributes: LogAttributes = {
@@ -112,6 +115,7 @@ export function logToolCall(config: Config, event: ToolCallEvent): void {
   } as UiEvent;
   uiTelemetryService.addEvent(uiEvent);
   ClearcutLogger.getInstance(config)?.logToolCallEvent(event);
+  LocalLogger.getInstance(config).logToolCallEvent(event);
   if (!isTelemetrySdkInitialized()) return;
 
   const attributes: LogAttributes = {
@@ -145,6 +149,7 @@ export function logToolCall(config: Config, event: ToolCallEvent): void {
 
 export function logApiRequest(config: Config, event: ApiRequestEvent): void {
   ClearcutLogger.getInstance(config)?.logApiRequestEvent(event);
+  LocalLogger.getInstance(config).logApiRequestEvent(event);
   if (!isTelemetrySdkInitialized()) return;
 
   const attributes: LogAttributes = {
@@ -167,6 +172,7 @@ export function logFlashFallback(
   event: FlashFallbackEvent,
 ): void {
   ClearcutLogger.getInstance(config)?.logFlashFallbackEvent(event);
+  LocalLogger.getInstance(config).logFlashFallbackEvent(event);
   if (!isTelemetrySdkInitialized()) return;
 
   const attributes: LogAttributes = {
@@ -192,6 +198,7 @@ export function logApiError(config: Config, event: ApiErrorEvent): void {
   } as UiEvent;
   uiTelemetryService.addEvent(uiEvent);
   ClearcutLogger.getInstance(config)?.logApiErrorEvent(event);
+  LocalLogger.getInstance(config).logApiErrorEvent(event);
   if (!isTelemetrySdkInitialized()) return;
 
   const attributes: LogAttributes = {
@@ -234,6 +241,7 @@ export function logApiResponse(config: Config, event: ApiResponseEvent): void {
   } as UiEvent;
   uiTelemetryService.addEvent(uiEvent);
   ClearcutLogger.getInstance(config)?.logApiResponseEvent(event);
+  LocalLogger.getInstance(config).logApiResponseEvent(event);
   if (!isTelemetrySdkInitialized()) return;
   const attributes: LogAttributes = {
     ...getCommonAttributes(config),
@@ -297,6 +305,7 @@ export function logLoopDetected(
   event: LoopDetectedEvent,
 ): void {
   ClearcutLogger.getInstance(config)?.logLoopDetectedEvent(event);
+  LocalLogger.getInstance(config).logLoopDetectedEvent(event);
   if (!isTelemetrySdkInitialized()) return;
 
   const attributes: LogAttributes = {
@@ -317,6 +326,7 @@ export function logFlashDecidedToContinue(
   event: FlashDecidedToContinueEvent,
 ): void {
   ClearcutLogger.getInstance(config)?.logFlashDecidedToContinueEvent(event);
+  LocalLogger.getInstance(config).logFlashDecidedToContinueEvent(event);
   if (!isTelemetrySdkInitialized()) return;
 
   const attributes: LogAttributes = {

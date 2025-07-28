@@ -89,5 +89,9 @@ export { OAuthUtils } from './mcp/oauth-utils.js';
 
 // Export telemetry functions
 export * from './telemetry/index.js';
+
+// Export local telemetry functions
+export * from './local-telemetry/LocalLogger.js';
+export * from './local-telemetry/LogAnalyzer.js';
 export { sessionId } from './utils/session.js';
 export * from './utils/browser.js';

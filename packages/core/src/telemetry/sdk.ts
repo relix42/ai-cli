@@ -29,6 +29,7 @@ import { Config } from '../config/config.js';
 import { SERVICE_NAME } from './constants.js';
 import { initializeMetrics } from './metrics.js';
 import { ClearcutLogger } from './clearcut-logger/clearcut-logger.js';
+import { LocalLogger } from '../local-telemetry/LocalLogger.js';
 import {
   FileLogExporter,
   FileMetricExporter,
@@ -142,6 +143,7 @@ export async function shutdownTelemetry(): Promise<void> {
   }
   try {
     ClearcutLogger.getInstance()?.shutdown();
+    LocalLogger.getInstance().shutdown();
     await sdk.shutdown();
     console.log('OpenTelemetry SDK shut down successfully.');
   } catch (error) {
