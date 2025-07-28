@@ -16,8 +16,8 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}🤖 AI CLI Agent Integration${NC}"
-echo "=================================="
+echo -e "${BLUE}💬 Chat CLI Agent Integration${NC}"
+echo "===================================="
 
 # Check if agent workspace exists
 if [ ! -d "$WORKSPACE_ROOT" ]; then
@@ -82,8 +82,8 @@ validate_compliance() {
     fi
     
     # Check XDG compliance (no files in home directory)
-    if find "$HOME" -maxdepth 1 -name "ai-cli*" -type f 2>/dev/null | grep -q .; then
-        echo -e "${YELLOW}⚠️  Found ai-cli files in home directory - should use XDG locations${NC}"
+    if find "$HOME" -maxdepth 1 -name "chat-cli*" -type f 2>/dev/null | grep -q .; then
+        echo -e "${YELLOW}⚠️  Found chat-cli files in home directory - should use XDG locations${NC}"
     fi
     
     echo -e "${GREEN}✅ Compliance validation passed${NC}"
@@ -94,10 +94,10 @@ setup_dev_env() {
     echo -e "${BLUE}🔧 Setting up development environment...${NC}"
     
     # Create XDG directories
-    mkdir -p "$HOME/.config/ai-cli"
-    mkdir -p "$HOME/.local/share/ai-cli"
-    mkdir -p "$HOME/.cache/ai-cli"
-    mkdir -p "$HOME/.local/state/ai-cli"
+    mkdir -p "$HOME/.config/chat-cli"
+    mkdir -p "$HOME/.local/share/chat-cli"
+    mkdir -p "$HOME/.cache/chat-cli"
+    mkdir -p "$HOME/.local/state/chat-cli"
     
     echo -e "${GREEN}✅ XDG directories created${NC}"
     

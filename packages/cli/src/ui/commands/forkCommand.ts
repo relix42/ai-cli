@@ -10,7 +10,7 @@ import { MessageType } from '../types.js';
 
 export const forkCommand: SlashCommand = {
   name: 'fork',
-  description: 'show AI CLI fork information and enhancements',
+  description: 'show Chat CLI information and features',
   kind: CommandKind.BUILT_IN,
   action: async (context) => {
     const forkInfo = await getForkInfo();
@@ -27,7 +27,7 @@ export const forkCommand: SlashCommand = {
       type: MessageType.INFO,
       text: `
 
-🤖 **AI CLI Fork Details**
+💬 **Chat CLI Details**
 
 **Name:** ${forkInfo.name}
 **Version:** ${forkInfo.version}
@@ -42,13 +42,13 @@ ${forkInfo.features.map(feature => `• ${feature}`).join('\n')}
 • Original Repository: ${forkInfo.originalRepo}
 
 **Usage:**
-• Use \`ai-cli\` command for enhanced experience
-• Use \`gemini\` command for original compatibility
-• Run \`./start_ai_cli.sh\` for guided setup
+• Use \`chat-cli\` command for full interface
+• Use \`chat\` command for quick access
+• Run \`./start_chat_cli.sh\` for guided setup
 
-**Agent Integration:**
-This fork includes full integration with the ai-agent-workspace system for
-collaborative AI development workflows.`
+**Local AI Focus:**
+Chat CLI is designed for local AI interactions without sending data to Google.
+Supports Ollama for local models and Claude-code-router for Claude access.`
     }, Date.now());
   },
 };

@@ -1,6 +1,6 @@
-# 🤖 AI CLI - Start Here
+# 💬 Chat CLI - Start Here
 
-**Enhanced Gemini CLI Fork for AI Development Workflows**
+**Local-First AI Chat Interface for Ollama and Claude Models**
 
 ## 🚨 **MANDATORY FIRST STEP FOR ALL AI AGENTS**
 
@@ -13,19 +13,19 @@
 
 ## 📋 **Project Overview**
 
-### **What is AI CLI?**
-- **Fork of**: [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
-- **Purpose**: Enhanced command-line AI workflow tool with custom features
+### **What is Chat CLI?**
+- **Based on**: [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
+- **Purpose**: Local-first AI chat interface without Google dependencies
 - **Language**: TypeScript/Node.js
 - **Build System**: ESBuild
 - **Package Manager**: NPM
 
 ### **Key Features**
-- 🔄 **Dual Binary Support**: `ai-cli` and `gemini` commands
+- 💬 **Local AI Chat**: Direct interface to Ollama and Claude models
+- 🔒 **Privacy-First**: No Google data collection or dependencies
 - 🚀 **Enhanced Startup**: Automated dependency checking and setup
 - 📚 **Improved Documentation**: Better setup guides and configuration
 - 🔧 **Development Tools**: Streamlined build and test processes
-- 🎨 **Custom Branding**: AI CLI identity with Gemini compatibility
 
 ## 🛠️ **Development Setup**
 
@@ -40,7 +40,7 @@
 cd ai-cli
 
 # Enhanced startup (recommended)
-./start_ai_cli.sh
+./start_chat_cli.sh
 
 # Or manual setup
 npm install
@@ -89,20 +89,23 @@ ai-cli/
 
 ### **Environment Variables**
 ```bash
-# Required for API access
-export GEMINI_API_KEY="your_api_key"
-# OR
-export GOOGLE_API_KEY="your_api_key"
-export GOOGLE_GENAI_USE_VERTEXAI=true
+# Provider Configuration (Required)
+export CHAT_CLI_PROVIDER="ollama"  # or "claude"
+
+# For Ollama
+export OLLAMA_MODEL="llama2"       # or any installed model
+export OLLAMA_HOST="localhost:11434"  # default Ollama host
+
+# For Claude
+export CLAUDE_API_KEY="your_claude_api_key"
 
 # Optional
 export DEBUG=1                    # Debug mode
-export GEMINI_SANDBOX=docker      # Sandbox type
 ```
 
-### **API Key Setup**
-1. **Gemini API**: Get key from [Google AI Studio](https://aistudio.google.com/apikey)
-2. **Vertex AI**: Get key from [Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/docs/start/api-keys)
+### **Provider Setup**
+1. **Ollama**: Install from [ollama.ai](https://ollama.ai) and pull a model
+2. **Claude**: Get API key from [Anthropic Console](https://console.anthropic.com)
 
 ## 🤝 **Agent Collaboration**
 
@@ -168,13 +171,13 @@ npm test
 ## 🚨 **Compliance Requirements**
 
 ### **File Locations (XDG Standard)**
-- Config files: `~/.config/ai-cli/`
-- Data files: `~/.local/share/ai-cli/`
-- Cache files: `~/.cache/ai-cli/`
-- State files: `~/.local/state/ai-cli/`
+- Config files: `~/.config/chat-cli/`
+- Data files: `~/.local/share/chat-cli/`
+- Cache files: `~/.cache/chat-cli/`
+- State files: `~/.local/state/chat-cli/`
 
 ### **Required Signature**
-Every response must end with: `🤖 Navigating with precision and care YourAgentName`
+Every response must end with: `💬 Navigating with precision and care YourAgentName`
 
 ### **Session Updates**
 Update sessions regularly with progress and changes.

@@ -1,11 +1,11 @@
-# AI CLI Project Configuration
-# Agent workspace integration for the AI CLI project
+# Chat CLI Project Configuration
+# Agent workspace integration for the Chat CLI project
 
 project:
-  name: "ai-cli"
-  emoji: "🤖"
+  name: "chat-cli"
+  emoji: "💬"
   type: "development"
-  description: "Enhanced fork of Gemini CLI with custom AI development features"
+  description: "Local-first AI chat interface supporting Ollama and Claude models"
   
 agent_workspace:
   enabled: true
@@ -41,6 +41,10 @@ integration:
   sync_strategy: "merge"
   
 features:
+  ollama_support: true
+  claude_support: true
+  local_first: true
+  no_google_deps: true
   custom_startup: true
   enhanced_docs: true
   dual_binary: true

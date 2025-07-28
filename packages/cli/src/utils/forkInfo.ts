@@ -20,18 +20,19 @@ export async function getForkInfo(): Promise<ForkInfo> {
   const pkgJson = await getPackageJson();
   
   return {
-    name: 'AI CLI',
+    name: 'Chat CLI',
     version: pkgJson?.version || 'unknown',
     originalName: 'Gemini CLI',
     originalRepo: 'https://github.com/google-gemini/gemini-cli',
-    forkRepo: 'https://github.com/relix42/ai-cli',
-    description: 'Enhanced fork of Gemini CLI with custom AI development features',
+    forkRepo: 'https://github.com/relix42/chat-cli',
+    description: 'Local AI chat interface supporting Ollama and Claude models',
     features: [
-      'Dual binary support (ai-cli and gemini commands)',
+      'Ollama model support for local AI inference',
+      'Claude-code-router integration',
+      'No Google dependencies or data collection',
+      'Local-first AI interactions',
       'Enhanced startup script with dependency checking',
       'Agent workspace integration',
-      'Improved documentation and setup guides',
-      'Custom development tools and workflows',
       'XDG compliance for configuration files'
     ]
   };

@@ -1,6 +1,6 @@
 {
-  "name": "@relix42/ai-cli",
-  "version": "0.1.13-fork.1",
+  "name": "@relix42/chat-cli",
+  "version": "1.0.0",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -11,7 +11,7 @@
   "private": "true",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/relix42/ai-cli.git"
+    "url": "git+https://github.com/relix42/chat-cli.git"
   },
   "config": {
     "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.1.13"
@@ -54,8 +54,8 @@
     "agent:validate": "./scripts/agent-integration.sh validate"
   },
   "bin": {
-    "ai-cli": "bundle/gemini.js",
-    "gemini": "bundle/gemini.js"
+    "chat-cli": "bundle/chat.js",
+    "chat": "bundle/chat.js"
   },
   "files": [
     "bundle/",

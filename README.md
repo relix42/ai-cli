@@ -1,120 +1,118 @@
-# AI CLI
+# Chat CLI
 
-[![AI CLI CI](https://github.com/relix42/ai-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/relix42/ai-cli/actions/workflows/ci.yml)
+[![Chat CLI CI](https://github.com/relix42/chat-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/relix42/chat-cli/actions/workflows/ci.yml)
 
-![AI CLI Screenshot](./docs/assets/gemini-screenshot.png)
+![Chat CLI Screenshot](./docs/assets/chat-screenshot.png)
 
-This repository contains the AI CLI, a customized fork of the Gemini CLI - a command-line AI workflow tool that connects to your
-tools, understands your code and accelerates your workflows.
+This repository contains Chat CLI, a local-first AI chat interface that supports Ollama and Claude models without sending data to Google.
 
-## About This Fork
+## About Chat CLI
 
-This is a customized version of the [Google Gemini CLI](https://github.com/google-gemini/gemini-cli) with additional features and configurations tailored for enhanced AI development workflows.
+Chat CLI is a privacy-focused fork of the [Google Gemini CLI](https://github.com/google-gemini/gemini-cli) that removes all Google dependencies and focuses on local AI interactions. It supports Ollama for local model inference and Claude-code-router for Claude API access.
 
-With the Gemini CLI you can:
+With Chat CLI you can:
 
-- Query and edit large codebases in and beyond Gemini's 1M token context window.
-- Generate new apps from PDFs or sketches, using Gemini's multimodal capabilities.
-- Automate operational tasks, like querying pull requests or handling complex rebases.
-- Use tools and MCP servers to connect new capabilities, including [media generation with Imagen,
-  Veo or Lyria](https://github.com/GoogleCloudPlatform/vertex-ai-creative-studio/tree/main/experiments/mcp-genmedia)
-- Ground your queries with the [Google Search](https://ai.google.dev/gemini-api/docs/grounding)
-  tool, built into Gemini.
+- Chat with local AI models through Ollama integration
+- Access Claude models through claude-code-router
+- Query and edit large codebases with AI assistance
+- Generate code and documentation with AI help
+- Use tools and MCP servers for extended capabilities
+- Keep all interactions local and private (no Google data collection)
 
 ## Quickstart
 
-You have two options to install Gemini CLI.
-
-### With Node
+### Installation
 
 1. **Prerequisites:** Ensure you have [Node.js version 20](https://nodejs.org/en/download) or higher installed.
-2. **Run the CLI:** Execute the following command in your terminal:
+2. **Install Chat CLI:**
 
    ```bash
-   npx https://github.com/google-gemini/gemini-cli
-   ```
-
-   Or install it with:
-
-   ```bash
-   npm install -g @google/gemini-cli
+   npm install -g @relix42/chat-cli
    ```
 
    Then, run the CLI from anywhere:
 
    ```bash
-   gemini
+   chat-cli
+   # or
+   chat
    ```
 
-### With Homebrew
+### Local Development
 
-1. **Prerequisites:** Ensure you have [Homebrew](https://brew.sh/) installed.
-2. **Install the CLI** Execute the following command in your terminal:
+1. **Clone the repository:**
 
    ```bash
-   brew install gemini-cli
+   git clone https://github.com/relix42/chat-cli.git
+   cd chat-cli
    ```
 
-   Then, run the CLI from anywhere:
+2. **Install dependencies and build:**
 
    ```bash
-   gemini
+   npm install
+   npm run build
    ```
 
-### Common Configuration steps
-
-3. **Pick a color theme**
-4. **Authenticate:** When prompted, sign in with your personal Google account. This will grant you up to 60 model requests per minute and 1,000 model requests per day using Gemini.
-
-You are now ready to use the Gemini CLI!
-
-### Use a Gemini API key:
-
-The Gemini API provides a free tier with [100 requests per day](https://ai.google.dev/gemini-api/docs/rate-limits#free-tier) using Gemini 2.5 Pro, control over which model you use, and access to higher rate limits (with a paid plan):
-
-1. Generate a key from [Google AI Studio](https://aistudio.google.com/apikey).
-2. Set it as an environment variable in your terminal. Replace `YOUR_API_KEY` with your generated key.
+3. **Run locally:**
 
    ```bash
-   export GEMINI_API_KEY="YOUR_API_KEY"
+   npm start
+   # or use the enhanced startup script
+   ./start_chat_cli.sh
    ```
 
-3. (Optionally) Upgrade your Gemini API project to a paid plan on the API key page (will automatically unlock [Tier 1 rate limits](https://ai.google.dev/gemini-api/docs/rate-limits#tier-1))
+### Configuration
 
-### Use a Vertex AI API key:
+Chat CLI supports two main AI providers:
 
-The Vertex AI API provides a [free tier](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview) using express mode for Gemini 2.5 Pro, control over which model you use, and access to higher rate limits with a billing account:
+#### Option 1: Ollama (Local Models)
 
-1. Generate a key from [Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/docs/start/api-keys).
-2. Set it as an environment variable in your terminal. Replace `YOUR_API_KEY` with your generated key and set GOOGLE_GENAI_USE_VERTEXAI to true
+1. **Install Ollama:** Follow the [Ollama installation guide](https://ollama.ai/)
+2. **Pull a model:**
 
    ```bash
-   export GOOGLE_API_KEY="YOUR_API_KEY"
-   export GOOGLE_GENAI_USE_VERTEXAI=true
+   ollama pull llama2
+   # or any other model you prefer
    ```
 
-3. (Optionally) Add a billing account on your project to get access to [higher usage limits](https://cloud.google.com/vertex-ai/generative-ai/docs/quotas)
+3. **Configure Chat CLI:**
 
-For other authentication methods, including Google Workspace accounts, see the [authentication](./docs/cli/authentication.md) guide.
+   ```bash
+   export CHAT_CLI_PROVIDER="ollama"
+   export OLLAMA_MODEL="llama2"
+   ```
+
+#### Option 2: Claude (via claude-code-router)
+
+1. **Set up claude-code-router:** Follow the [claude-code-router setup guide](https://github.com/anthropics/claude-code-router)
+2. **Configure Chat CLI:**
+
+   ```bash
+   export CHAT_CLI_PROVIDER="claude"
+   export CLAUDE_API_KEY="your_claude_api_key"
+   ```
+
+You are now ready to use Chat CLI!
 
 ## Examples
 
-Once the CLI is running, you can start interacting with Gemini from your shell.
+Once Chat CLI is configured, you can start chatting with AI models:
 
 You can start a project from a new directory:
 
 ```sh
 cd new-project/
-gemini
-> Write me a Gemini Discord bot that answers questions using a FAQ.md file I will provide
+chat-cli
+> Write me a Discord bot that answers questions using a FAQ.md file I will provide
 ```
 
 Or work with an existing project:
 
 ```sh
-git clone https://github.com/google-gemini/gemini-cli
-cd gemini-cli
-gemini
+git clone https://github.com/relix42/chat-cli
+cd chat-cli
+chat
 > Give me a summary of all of the changes that went in yesterday
 ```
 

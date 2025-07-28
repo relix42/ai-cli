@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# AI CLI Test Script
-# Tests the basic functionality of the AI CLI
+# Chat CLI Test Script
+# Tests the basic functionality of Chat CLI
 
-echo "🧪 Testing AI CLI Functionality"
-echo "================================"
+echo "🧪 Testing Chat CLI Functionality"
+echo "=================================="
 
 # Test 1: Check if CLI starts without errors
 echo "📋 Test 1: CLI Help Command"
@@ -52,9 +52,9 @@ else
 fi
 
 echo ""
-echo "🎉 All tests passed! AI CLI is ready for development."
+echo "🎉 All tests passed! Chat CLI is ready for development."
 echo ""
 echo "🚀 Next steps:"
-echo "   1. Set up API keys (GEMINI_API_KEY or GOOGLE_API_KEY)"
-echo "   2. Run: ./start_ai_cli.sh"
-echo "   3. Start developing new features!"
+echo "   1. Set up provider (CHAT_CLI_PROVIDER=ollama or claude)"
+echo "   2. Run: ./start_chat_cli.sh"
+echo "   3. Start chatting with AI models!"
