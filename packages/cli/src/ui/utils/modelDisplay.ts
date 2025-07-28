@@ -5,23 +5,6 @@
  */
 
 /**
- * Maps technical model names to GrooveForge-branded display names
- */
-function getGrooveForgeModelDisplayName(technicalModel: string): string {
-  const modelMap: Record<string, string> = {
-    'gemini-2.5-pro': 'GrooveForge Pro 2.5',
-    'gemini-2.5-flash': 'GrooveForge Flash 2.5',
-    'gemini-2.5-flash-lite': 'GrooveForge Flash Lite 2.5',
-    'gemini-1.5-pro': 'GrooveForge Pro 1.5',
-    'gemini-1.5-flash': 'GrooveForge Flash 1.5',
-    'gemini-pro': 'GrooveForge Pro',
-    'gemini-flash': 'GrooveForge Flash',
-  };
-  
-  return modelMap[technicalModel] || `GrooveForge (${technicalModel})`;
-}
-
-/**
  * Gets the display model name, prioritizing Chat CLI providers over Gemini models
  */
 export function getDisplayModel(geminiModel: string): string {
@@ -35,8 +18,8 @@ export function getDisplayModel(geminiModel: string): string {
     return `claude/${claudeModel}`;
   }
   
-  // Use GrooveForge branding for Gemini models
-  return getGrooveForgeModelDisplayName(geminiModel);
+  // Return actual technical model name for Gemini models
+  return geminiModel;
 }
 
 /**
