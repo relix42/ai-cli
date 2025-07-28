@@ -94,6 +94,12 @@ export function AuthDialog({
   
   // Debug: Log the items array
   console.log('[GrooveForge Debug] Auth items:', items.map(item => ({ label: item.label, value: item.value })));
+  console.log('[GrooveForge Debug] Environment:', {
+    CHAT_CLI_PROVIDER: process.env.CHAT_CLI_PROVIDER,
+    GEMINI_API_KEY: !!process.env.GEMINI_API_KEY,
+    CLOUD_SHELL: process.env.CLOUD_SHELL,
+    selectedAuthType: settings.merged.selectedAuthType
+  });
 
   const initialAuthIndex = items.findIndex((item) => {
     if (settings.merged.selectedAuthType) {
@@ -113,6 +119,11 @@ export function AuthDialog({
 
     return String(item.value) === 'OLLAMA';
   });
+  
+  console.log('[GrooveForge Debug] Initial auth index:', initialAuthIndex);
+  
+  // Ensure we have a valid index
+  const safeInitialIndex = initialAuthIndex >= 0 ? initialAuthIndex : 0;
 
   const handleAuthSelect = (authMethod: AuthType | string) => {
     const error = validateAuthMethod(authMethod as string);
@@ -157,7 +168,7 @@ export function AuthDialog({
       <Box marginTop={1}>
         <RadioButtonSelect
           items={items}
-          initialIndex={initialAuthIndex}
+          initialIndex={safeInitialIndex}
           onSelect={handleAuthSelect}
           isFocused={true}
         />
