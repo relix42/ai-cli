@@ -44,6 +44,10 @@ export interface CliArgs {
   debug: boolean | undefined;
   prompt: string | undefined;
   promptInteractive: string | undefined;
+  initialPrompt: string | undefined;
+  initialPrompts: string | undefined;
+  initialPromptsFile: string | undefined;
+  quietInitialPrompts: boolean | undefined;
   allFiles: boolean | undefined;
   all_files: boolean | undefined;
   showMemoryUsage: boolean | undefined;
@@ -86,6 +90,23 @@ export async function parseArguments(): Promise<CliArgs> {
       type: 'string',
       description:
         'Execute the provided prompt and continue in interactive mode',
+    })
+    .option('initial-prompt', {
+      type: 'string',
+      description: 'Execute this prompt automatically before user interaction',
+    })
+    .option('initial-prompts', {
+      type: 'string',
+      description: 'Execute multiple prompts separated by semicolons before user interaction',
+    })
+    .option('initial-prompts-file', {
+      type: 'string',
+      description: 'Execute prompts from a file (one per line) before user interaction',
+    })
+    .option('quiet-initial-prompts', {
+      type: 'boolean',
+      description: 'Hide initial prompt execution from display',
+      default: false,
     })
     .option('sandbox', {
       alias: 's',
@@ -210,6 +231,20 @@ export async function parseArguments(): Promise<CliArgs> {
           'Cannot use both --prompt (-p) and --prompt-interactive (-i) together',
         );
       }
+      
+      // Check initial prompt options
+      const initialPromptOptions = [
+        argv.initialPrompt,
+        argv.initialPrompts,
+        argv.initialPromptsFile
+      ].filter(Boolean);
+      
+      if (initialPromptOptions.length > 1) {
+        throw new Error(
+          'Cannot use multiple initial prompt options together. Choose one of: --initial-prompt, --initial-prompts, or --initial-prompts-file',
+        );
+      }
+      
       return true;
     });
 

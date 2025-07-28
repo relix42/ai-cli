@@ -41,6 +41,7 @@ import { validateAuthMethod } from './config/auth.js';
 import { setMaxSizedBoxDebugging } from './ui/components/shared/MaxSizedBox.js';
 import { validateNonInteractiveAuth } from './validateNonInterActiveAuth.js';
 import { appEvents, AppEvent } from './utils/events.js';
+import { parseInitialPrompts, validateInitialPrompts, formatPromptsForDisplay } from './utils/initialPrompts.js';
 
 function getNodeMemoryArgs(config: Config): string[] {
   const totalMemoryMB = os.totalmem() / (1024 * 1024);
@@ -233,6 +234,30 @@ export async function main() {
   // Render UI, passing necessary config values. Check that there is no command line question.
   if (shouldBeInteractive) {
     const version = await getCliVersion();
+    
+    // Parse initial prompts from CLI arguments and other sources
+    let initialPromptsConfig: { prompts: string[]; quiet: boolean } = { prompts: [], quiet: false };
+    try {
+      initialPromptsConfig = parseInitialPrompts(argv);
+      
+      // Validate initial prompts
+      if (initialPromptsConfig.prompts.length > 0) {
+        const validation = validateInitialPrompts(initialPromptsConfig.prompts);
+        if (!validation.valid) {
+          console.error('❌ Initial prompts validation failed:');
+          validation.errors.forEach(error => console.error(`  - ${error}`));
+          process.exit(1);
+        }
+        
+        if (!initialPromptsConfig.quiet) {
+          console.log(`🚀 GrooveForge will execute ${initialPromptsConfig.prompts.length} initial prompt${initialPromptsConfig.prompts.length === 1 ? '' : 's'} before user interaction.`);
+        }
+      }
+    } catch (error) {
+      console.error(`❌ Error parsing initial prompts: ${error instanceof Error ? error.message : String(error)}`);
+      process.exit(1);
+    }
+    
     setWindowTitle(basename(workspaceRoot), settings);
     const instance = render(
       <React.StrictMode>
@@ -241,6 +266,8 @@ export async function main() {
           settings={settings}
           startupWarnings={startupWarnings}
           version={version}
+          initialPrompts={initialPromptsConfig.prompts}
+          quietInitialPrompts={initialPromptsConfig.quiet}
         />
       </React.StrictMode>,
       { exitOnCtrlC: false },

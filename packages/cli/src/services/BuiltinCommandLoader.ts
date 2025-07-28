@@ -22,6 +22,7 @@ import { editorCommand } from '../ui/commands/editorCommand.js';
 import { extensionsCommand } from '../ui/commands/extensionsCommand.js';
 import { helpCommand } from '../ui/commands/helpCommand.js';
 import { ideCommand } from '../ui/commands/ideCommand.js';
+import { initialPromptsCommand } from '../ui/commands/initialPromptsCommand.js';
 import { logsCommand } from '../ui/commands/logsCommand.js';
 import { mcpCommand } from '../ui/commands/mcpCommand.js';
 import { memoryCommand } from '../ui/commands/memoryCommand.js';
@@ -64,6 +65,7 @@ export class BuiltinCommandLoader implements ICommandLoader {
       extensionsCommand,
       helpCommand,
       ideCommand(this.config),
+      initialPromptsCommand,
       logsCommand,
       memoryCommand,
       privacyCommand,

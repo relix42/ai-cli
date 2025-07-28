@@ -97,6 +97,8 @@ interface AppProps {
   settings: LoadedSettings;
   startupWarnings?: string[];
   version: string;
+  initialPrompts?: string[];
+  quietInitialPrompts?: boolean;
 }
 
 export const AppWrapper = (props: AppProps) => (
@@ -107,7 +109,7 @@ export const AppWrapper = (props: AppProps) => (
   </SessionStatsProvider>
 );
 
-const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
+const App = ({ config, settings, startupWarnings = [], version, initialPrompts = [], quietInitialPrompts = false }: AppProps) => {
   const isFocused = useFocus();
   useBracketedPaste();
   const [updateMessage, setUpdateMessage] = useState<string | null>(null);
@@ -205,6 +207,8 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
     setShowPrivacyNotice(true);
   }, []);
   const initialPromptSubmitted = useRef(false);
+  const initialPromptsExecuted = useRef(false);
+  const [currentInitialPromptIndex, setCurrentInitialPromptIndex] = useState(0);
 
   const errorCount = useMemo(
     () =>
@@ -722,6 +726,65 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
     isEditorDialogOpen,
     showPrivacyNotice,
     geminiClient,
+  ]);
+
+  // Execute initial prompts sequentially
+  useEffect(() => {
+    if (
+      initialPrompts.length > 0 &&
+      !initialPromptsExecuted.current &&
+      !isAuthenticating &&
+      !isAuthDialogOpen &&
+      !isThemeDialogOpen &&
+      !isEditorDialogOpen &&
+      !showPrivacyNotice &&
+      geminiClient?.isInitialized?.() &&
+      streamingState === StreamingState.Idle &&
+      currentInitialPromptIndex < initialPrompts.length
+    ) {
+      const currentPrompt = initialPrompts[currentInitialPromptIndex];
+      
+      if (!quietInitialPrompts) {
+        addItem(
+          {
+            type: MessageType.INFO,
+            text: `🚀 **Executing initial prompt ${currentInitialPromptIndex + 1}/${initialPrompts.length}:** ${currentPrompt}`,
+          },
+          Date.now(),
+        );
+      }
+      
+      submitQuery(currentPrompt);
+      setCurrentInitialPromptIndex(prev => prev + 1);
+      
+      // Mark as executed when we've processed all prompts
+      if (currentInitialPromptIndex + 1 >= initialPrompts.length) {
+        initialPromptsExecuted.current = true;
+        
+        if (!quietInitialPrompts) {
+          addItem(
+            {
+              type: MessageType.INFO,
+              text: `✅ **Completed ${initialPrompts.length} initial prompt${initialPrompts.length === 1 ? '' : 's'}** - Ready for interaction!`,
+            },
+            Date.now(),
+          );
+        }
+      }
+    }
+  }, [
+    initialPrompts,
+    currentInitialPromptIndex,
+    submitQuery,
+    addItem,
+    quietInitialPrompts,
+    isAuthenticating,
+    isAuthDialogOpen,
+    isThemeDialogOpen,
+    isEditorDialogOpen,
+    showPrivacyNotice,
+    geminiClient,
+    streamingState,
   ]);
 
   if (quittingMessages) {
