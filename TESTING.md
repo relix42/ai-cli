@@ -4,6 +4,33 @@
 
 GrooveForge includes comprehensive testing to catch regressions and ensure functionality works correctly after changes.
 
+## 🚨 **CRITICAL REQUIREMENT: ALL CHANGES MUST INCLUDE TESTS**
+
+**Every feature addition, bug fix, or modification MUST include corresponding tests.** This is non-negotiable for maintaining code quality and preventing regressions.
+
+### 📝 **Test Requirements Checklist**
+
+Before submitting any changes, ensure you have:
+
+- ☐ **Added unit tests** for new functionality
+- ☐ **Added integration tests** to `test-suite.sh` for CLI features
+- ☐ **Updated existing tests** if modifying existing functionality
+- ☐ **Added regression tests** for bug fixes
+- ☐ **Verified all tests pass** with `./test-suite.sh`
+- ☐ **Documented test coverage** in your PR description
+
+### 🎯 **Test Coverage Standards**
+
+| Change Type | Required Tests |
+|-------------|----------------|
+| **New Features** | Unit tests + Integration tests + Documentation |
+| **Bug Fixes** | Regression tests that would have caught the bug |
+| **API Changes** | Update all affected tests + New tests for changes |
+| **UI Changes** | Component tests + User interaction tests |
+| **CLI Changes** | Command-line integration tests in `test-suite.sh` |
+| **Performance** | Benchmark tests + Regression tests |
+| **Security** | Security-specific tests + Edge case tests |
+
 ## 🧪 Test Suites
 
 ### Quick Tests (`./test-quick.sh`)
@@ -152,11 +179,48 @@ Some tests may be skipped in certain environments:
 - **Before releases**: Full suite + manual testing
 
 ### Adding New Tests
+
+#### **For Unit Tests (Vitest)**
+1. Create `*.test.ts` or `*.test.tsx` files co-located with source
+2. Follow existing patterns in the codebase
+3. Mock external dependencies appropriately
+4. Test both success and failure cases
+5. Run with `npm test`
+
+#### **For Integration Tests (test-suite.sh)**
 1. Add test function to `test-suite.sh`
 2. Follow naming convention: `test_feature_name()`
 3. Use helper functions: `log_test()`, `log_pass()`, `log_fail()`
 4. Include cleanup and error handling
-5. Test both success and failure cases
+5. Test real CLI interactions and workflows
+6. Example template:
+   ```bash
+   test_my_new_feature() {
+       log_test "My new feature functionality"
+       
+       # Setup
+       cd /tmp
+       export TEST_VAR=value
+       
+       # Test execution
+       if timeout 10s "$SCRIPT_DIR/gf.sh" --my-flag > /tmp/test-output.log 2>&1; then
+           if grep -q "Expected Output" /tmp/test-output.log; then
+               log_pass "My new feature works correctly"
+           else
+               log_fail "Unexpected output" "$(cat /tmp/test-output.log)"
+               return 1
+           fi
+       else
+           log_fail "Command failed" "$(cat /tmp/test-output.log)"
+           return 1
+       fi
+       
+       # Cleanup
+       unset TEST_VAR
+       cd "$SCRIPT_DIR"
+   }
+   ```
+7. Add your test function to the `main()` function call list
 
 ### Test Maintenance
 - Keep tests fast and reliable

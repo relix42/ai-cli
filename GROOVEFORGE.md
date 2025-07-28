@@ -16,6 +16,33 @@ This single command ensures that your changes meet all the quality gates of the 
 
 ## Writing Tests
 
+**🚨 CRITICAL REQUIREMENT: ALL CHANGES MUST INCLUDE TESTS**
+
+Every feature addition, bug fix, or modification MUST include corresponding tests. This is non-negotiable for maintaining code quality and preventing regressions.
+
+### Test Suite Integration
+
+**Before submitting any changes:**
+1. **Add tests** for your new functionality to the appropriate test files
+2. **Update existing tests** if you modify existing functionality  
+3. **Run the test suite** to ensure all tests pass:
+   ```bash
+   ./test-quick.sh    # Fast feedback (10 seconds)
+   ./test-suite.sh    # Full validation (60 seconds)
+   ```
+4. **Add integration tests** to `test-suite.sh` for major features
+5. **Document test requirements** in your PR description
+
+### Test Coverage Requirements
+
+- **New Features**: Must have unit tests AND integration tests
+- **Bug Fixes**: Must include regression tests that would have caught the bug
+- **API Changes**: Must update all affected tests
+- **UI Changes**: Must include component tests and user interaction tests
+- **CLI Changes**: Must include command-line integration tests in test-suite.sh
+
+### Testing Framework
+
 This project uses **Vitest** as its primary testing framework. When writing tests, aim to follow existing patterns. Key conventions include:
 
 ### Test Structure and Framework
