@@ -48,7 +48,7 @@ fi
 
 # Build if needed
 if [ ! -d "bundle" ]; then
-    echo "🔨 Building AI CLI..."
+    echo "🔨 Building Chat CLI..."
     npm run build
 fi
 

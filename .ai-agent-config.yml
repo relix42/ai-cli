@@ -37,7 +37,7 @@ scripts:
   
 integration:
   upstream_repo: "https://github.com/google-gemini/gemini-cli.git"
-  fork_repo: "https://github.com/relix42/ai-cli.git"
+  fork_repo: "https://github.com/relix42/chat-cli.git"
   sync_strategy: "merge"
   
 features:
