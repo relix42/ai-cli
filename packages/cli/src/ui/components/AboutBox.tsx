@@ -107,7 +107,7 @@ export const AboutBox: React.FC<AboutBoxProps> = ({
       <Box flexDirection="row">
         <Box width="35%">
           <Text bold color={Colors.LightBlue}>
-            GCP Project
+            Cloud Project
           </Text>
         </Box>
         <Box>

@@ -9,22 +9,7 @@ import { CommandKind, SlashCommand } from './types.js';
 import process from 'node:process';
 import { MessageType, type HistoryItemAbout } from '../types.js';
 
-/**
- * Maps technical model names to GrooveForge-branded display names
- */
-function getGrooveForgeModelDisplayName(technicalModel: string): string {
-  const modelMap: Record<string, string> = {
-    'gemini-2.5-pro': 'GrooveForge Pro 2.5',
-    'gemini-2.5-flash': 'GrooveForge Flash 2.5',
-    'gemini-2.5-flash-lite': 'GrooveForge Flash Lite 2.5',
-    'gemini-1.5-pro': 'GrooveForge Pro 1.5',
-    'gemini-1.5-flash': 'GrooveForge Flash 1.5',
-    'gemini-pro': 'GrooveForge Pro',
-    'gemini-flash': 'GrooveForge Flash',
-  };
-  
-  return modelMap[technicalModel] || `GrooveForge (${technicalModel})`;
-}
+
 
 export const aboutCommand: SlashCommand = {
   name: 'about',
@@ -40,8 +25,7 @@ export const aboutCommand: SlashCommand = {
         process.env.SEATBELT_PROFILE || 'unknown'
       })`;
     }
-    const technicalModel = context.services.config?.getModel() || 'Unknown';
-    const modelVersion = getGrooveForgeModelDisplayName(technicalModel);
+    const modelVersion = context.services.config?.getModel() || 'Unknown';
     const cliVersion = await getCliVersion();
     const selectedAuthType =
       context.services.settings.merged.selectedAuthType || '';
