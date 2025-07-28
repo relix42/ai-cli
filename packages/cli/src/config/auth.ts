@@ -9,6 +9,28 @@ import { loadEnvironment } from './settings.js';
 
 export const validateAuthMethod = (authMethod: string): string | null => {
   loadEnvironment();
+  
+  // GrooveForge: Handle local AI providers
+  if (authMethod === 'OLLAMA') {
+    // Check if Ollama is configured
+    if (process.env.CHAT_CLI_PROVIDER !== 'ollama') {
+      return 'To use Ollama, set CHAT_CLI_PROVIDER=ollama in your environment. Optionally set OLLAMA_MODEL to specify the model.';
+    }
+    return null;
+  }
+  
+  if (authMethod === 'CLAUDE') {
+    // Check if Claude is configured
+    if (process.env.CHAT_CLI_PROVIDER !== 'claude') {
+      return 'To use Claude, set CHAT_CLI_PROVIDER=claude and CLAUDE_API_KEY in your environment.';
+    }
+    if (!process.env.CLAUDE_API_KEY) {
+      return 'CLAUDE_API_KEY environment variable not found. Add that to your environment and try again!';
+    }
+    return null;
+  }
+  
+  // Legacy Google auth methods
   if (
     authMethod === AuthType.LOGIN_WITH_GOOGLE ||
     authMethod === AuthType.CLOUD_SHELL

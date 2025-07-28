@@ -51,6 +51,15 @@ export function AuthDialog({
       );
     }
 
+    // Check for local AI provider configuration
+    if (process.env.CHAT_CLI_PROVIDER === 'ollama') {
+      return 'Ollama detected! Select "Local AI (Ollama)" to use your local models.';
+    }
+    
+    if (process.env.CHAT_CLI_PROVIDER === 'claude') {
+      return 'Claude API detected! Select "Claude API" to use Claude models.';
+    }
+    
     if (
       process.env.GEMINI_API_KEY &&
       (!defaultAuthType || defaultAuthType === AuthType.USE_GEMINI)
@@ -59,10 +68,19 @@ export function AuthDialog({
     }
     return null;
   });
+  // GrooveForge: Focus on local and independent AI providers
   const items = [
     {
-      label: 'Login with Google',
-      value: AuthType.LOGIN_WITH_GOOGLE,
+      label: 'Local AI (Ollama) - Recommended',
+      value: 'OLLAMA' as AuthType,
+    },
+    {
+      label: 'Claude API',
+      value: 'CLAUDE' as AuthType,
+    },
+    {
+      label: 'Use Gemini API Key (Legacy)',
+      value: AuthType.USE_GEMINI,
     },
     ...(process.env.CLOUD_SHELL === 'true'
       ? [
@@ -72,39 +90,34 @@ export function AuthDialog({
           },
         ]
       : []),
-    {
-      label: 'Use Gemini API Key',
-      value: AuthType.USE_GEMINI,
-    },
-    { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
   ];
 
   const initialAuthIndex = items.findIndex((item) => {
     if (settings.merged.selectedAuthType) {
-      return item.value === settings.merged.selectedAuthType;
+      return String(item.value) === String(settings.merged.selectedAuthType);
     }
 
     const defaultAuthType = parseDefaultAuthType(
       process.env.GEMINI_DEFAULT_AUTH_TYPE,
     );
     if (defaultAuthType) {
-      return item.value === defaultAuthType;
+      return String(item.value) === String(defaultAuthType);
     }
 
     if (process.env.GEMINI_API_KEY) {
-      return item.value === AuthType.USE_GEMINI;
+      return String(item.value) === String(AuthType.USE_GEMINI);
     }
 
-    return item.value === AuthType.LOGIN_WITH_GOOGLE;
+    return String(item.value) === 'OLLAMA';
   });
 
-  const handleAuthSelect = (authMethod: AuthType) => {
-    const error = validateAuthMethod(authMethod);
+  const handleAuthSelect = (authMethod: AuthType | string) => {
+    const error = validateAuthMethod(authMethod as string);
     if (error) {
       setErrorMessage(error);
     } else {
       setErrorMessage(null);
-      onSelect(authMethod, SettingScope.User);
+      onSelect(authMethod as AuthType, SettingScope.User);
     }
   };
 
@@ -136,13 +149,13 @@ export function AuthDialog({
     >
       <Text bold>Get started</Text>
       <Box marginTop={1}>
-        <Text>How would you like to authenticate for this project?</Text>
+        <Text>How would you like to connect to AI models?</Text>
       </Box>
       <Box marginTop={1}>
         <RadioButtonSelect
-          items={items}
+          items={items as any}
           initialIndex={initialAuthIndex}
-          onSelect={handleAuthSelect}
+          onSelect={handleAuthSelect as any}
           isFocused={true}
         />
       </Box>
@@ -155,7 +168,7 @@ export function AuthDialog({
         <Text color={Colors.Gray}>(Use Enter to select)</Text>
       </Box>
       <Box marginTop={1}>
-        <Text>Terms of Services and Privacy Notice for GrooveForge</Text>
+        <Text>GrooveForge - Independent AI CLI</Text>
       </Box>
       <Box marginTop={1}>
         <Text color={Colors.AccentBlue}>
