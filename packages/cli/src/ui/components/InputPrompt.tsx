@@ -374,7 +374,7 @@ export const InputPrompt: React.FC<InputPromptProps> = ({
         <Text
           color={shellModeActive ? Colors.AccentYellow : Colors.AccentPurple}
         >
-          {shellModeActive ? '! ' : '> '}
+          {shellModeActive ? '! ' : 'gf> '}
         </Text>
         <Box flexGrow={1} flexDirection="column">
           {buffer.text.length === 0 && placeholder ? (
