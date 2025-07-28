@@ -153,7 +153,7 @@ describe('mcpCommand', () => {
         type: 'message',
         messageType: 'info',
         content:
-          'No MCP servers configured. Please open the following URL in your browser to view documentation:\nhttps://goo.gle/gemini-cli-docs-mcp',
+          'No MCP servers configured. Please open the following URL in your browser to view documentation:\nhttps://github.com/relix42/grooveforge/blob/main/docs/mcp.md',
       });
       expect(open).not.toHaveBeenCalled();
     });
@@ -165,9 +165,9 @@ describe('mcpCommand', () => {
         type: 'message',
         messageType: 'info',
         content:
-          'No MCP servers configured. Opening documentation in your browser: https://goo.gle/gemini-cli-docs-mcp',
+          'No MCP servers configured. Opening documentation in your browser: https://github.com/relix42/grooveforge/blob/main/docs/mcp.md',
       });
-      expect(open).toHaveBeenCalledWith('https://goo.gle/gemini-cli-docs-mcp');
+      expect(open).toHaveBeenCalledWith('https://github.com/relix42/grooveforge/blob/main/docs/mcp.md');
     });
   });
 

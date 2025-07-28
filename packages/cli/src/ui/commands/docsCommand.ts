@@ -18,7 +18,7 @@ export const docsCommand: SlashCommand = {
   description: 'open full GrooveForge documentation in your browser',
   kind: CommandKind.BUILT_IN,
   action: async (context: CommandContext): Promise<void> => {
-    const docsUrl = 'https://goo.gle/gemini-cli-docs';
+    const docsUrl = 'https://github.com/relix42/grooveforge/blob/main/README.md';
 
     if (process.env.SANDBOX && process.env.SANDBOX !== 'sandbox-exec') {
       context.ui.addItem(

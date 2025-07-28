@@ -59,7 +59,7 @@ const getMcpStatus = async (
   const blockedMcpServers = config.getBlockedMcpServers() || [];
 
   if (serverNames.length === 0 && blockedMcpServers.length === 0) {
-    const docsUrl = 'https://goo.gle/gemini-cli-docs-mcp';
+    const docsUrl = 'https://github.com/relix42/grooveforge/blob/main/docs/mcp.md';
     if (process.env.SANDBOX && process.env.SANDBOX !== 'sandbox-exec') {
       return {
         type: 'message',
