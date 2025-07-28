@@ -146,6 +146,90 @@ describe('parseArguments', () => {
     expect(argv.promptInteractive).toBe('interactive prompt');
     expect(argv.prompt).toBeUndefined();
   });
+
+  it('should parse --initial-prompt argument', async () => {
+    process.argv = ['node', 'script.js', '--initial-prompt', 'startup prompt'];
+    const argv = await parseArguments();
+    expect(argv.initialPrompt).toBe('startup prompt');
+  });
+
+  it('should parse --initial-prompts argument', async () => {
+    process.argv = ['node', 'script.js', '--initial-prompts', 'prompt1;prompt2'];
+    const argv = await parseArguments();
+    expect(argv.initialPrompts).toBe('prompt1;prompt2');
+  });
+
+  it('should parse --initial-prompts-file argument', async () => {
+    process.argv = ['node', 'script.js', '--initial-prompts-file', '/path/to/file.txt'];
+    const argv = await parseArguments();
+    expect(argv.initialPromptsFile).toBe('/path/to/file.txt');
+  });
+
+  it('should parse --quiet-initial-prompts argument', async () => {
+    process.argv = ['node', 'script.js', '--quiet-initial-prompts'];
+    const argv = await parseArguments();
+    expect(argv.quietInitialPrompts).toBe(true);
+  });
+
+  it('should throw error when multiple initial prompt options are used together', async () => {
+    process.argv = [
+      'node',
+      'script.js',
+      '--initial-prompt',
+      'single',
+      '--initial-prompts',
+      'multiple',
+    ];
+
+    const mockExit = vi.spyOn(process, 'exit').mockImplementation(() => {
+      throw new Error('process.exit called');
+    });
+
+    const mockConsoleError = vi
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
+
+    await expect(parseArguments()).rejects.toThrow('process.exit called');
+
+    expect(mockConsoleError).toHaveBeenCalledWith(
+      expect.stringContaining(
+        'Cannot use multiple initial prompt options together',
+      ),
+    );
+
+    mockExit.mockRestore();
+    mockConsoleError.mockRestore();
+  });
+
+  it('should throw error when initial-prompt and initial-prompts-file are used together', async () => {
+    process.argv = [
+      'node',
+      'script.js',
+      '--initial-prompt',
+      'single',
+      '--initial-prompts-file',
+      '/path/to/file.txt',
+    ];
+
+    const mockExit = vi.spyOn(process, 'exit').mockImplementation(() => {
+      throw new Error('process.exit called');
+    });
+
+    const mockConsoleError = vi
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
+
+    await expect(parseArguments()).rejects.toThrow('process.exit called');
+
+    expect(mockConsoleError).toHaveBeenCalledWith(
+      expect.stringContaining(
+        'Cannot use multiple initial prompt options together',
+      ),
+    );
+
+    mockExit.mockRestore();
+    mockConsoleError.mockRestore();
+  });
 });
 
 describe('loadCliConfig', () => {

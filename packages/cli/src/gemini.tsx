@@ -228,35 +228,36 @@ export async function main() {
     ...(await getUserStartupWarnings(workspaceRoot)),
   ];
 
+  // Parse and validate initial prompts BEFORE determining interactive mode
+  // This ensures initial prompts work in both interactive and non-interactive modes
+  let initialPromptsConfig: { prompts: string[]; quiet: boolean } = { prompts: [], quiet: false };
+  try {
+    initialPromptsConfig = parseInitialPrompts(argv);
+    
+    // Validate initial prompts
+    if (initialPromptsConfig.prompts.length > 0) {
+      const validation = validateInitialPrompts(initialPromptsConfig.prompts);
+      if (!validation.valid) {
+        console.error('❌ Initial prompts validation failed:');
+        validation.errors.forEach(error => console.error(`  - ${error}`));
+        process.exit(1);
+      }
+      
+      if (!initialPromptsConfig.quiet) {
+        console.log(`🚀 GrooveForge will execute ${initialPromptsConfig.prompts.length} initial prompt${initialPromptsConfig.prompts.length === 1 ? '' : 's'} before user interaction.`);
+      }
+    }
+  } catch (error) {
+    console.error(`❌ Error parsing initial prompts: ${error instanceof Error ? error.message : String(error)}`);
+    process.exit(1);
+  }
+
   const shouldBeInteractive =
     !!argv.promptInteractive || (process.stdin.isTTY && input?.length === 0);
 
   // Render UI, passing necessary config values. Check that there is no command line question.
   if (shouldBeInteractive) {
     const version = await getCliVersion();
-    
-    // Parse initial prompts from CLI arguments and other sources
-    let initialPromptsConfig: { prompts: string[]; quiet: boolean } = { prompts: [], quiet: false };
-    try {
-      initialPromptsConfig = parseInitialPrompts(argv);
-      
-      // Validate initial prompts
-      if (initialPromptsConfig.prompts.length > 0) {
-        const validation = validateInitialPrompts(initialPromptsConfig.prompts);
-        if (!validation.valid) {
-          console.error('❌ Initial prompts validation failed:');
-          validation.errors.forEach(error => console.error(`  - ${error}`));
-          process.exit(1);
-        }
-        
-        if (!initialPromptsConfig.quiet) {
-          console.log(`🚀 GrooveForge will execute ${initialPromptsConfig.prompts.length} initial prompt${initialPromptsConfig.prompts.length === 1 ? '' : 's'} before user interaction.`);
-        }
-      }
-    } catch (error) {
-      console.error(`❌ Error parsing initial prompts: ${error instanceof Error ? error.message : String(error)}`);
-      process.exit(1);
-    }
     
     setWindowTitle(basename(workspaceRoot), settings);
     const instance = render(
@@ -303,7 +304,34 @@ export async function main() {
     settings,
     argv,
   );
-
+  
+  // Execute initial prompts in non-interactive mode if any
+  if (initialPromptsConfig.prompts.length > 0) {
+    for (let i = 0; i < initialPromptsConfig.prompts.length; i++) {
+      const prompt = initialPromptsConfig.prompts[i];
+      const promptId = Math.random().toString(16).slice(2);
+      
+      if (!initialPromptsConfig.quiet) {
+        console.log(`🚀 Executing initial prompt ${i + 1}/${initialPromptsConfig.prompts.length}: ${prompt}`);
+      }
+      
+      logUserPrompt(nonInteractiveConfig, {
+        'event.name': 'user_prompt',
+        'event.timestamp': new Date().toISOString(),
+        prompt,
+        prompt_id: promptId,
+        auth_type: nonInteractiveConfig.getContentGeneratorConfig()?.authType,
+        prompt_length: prompt.length,
+      });
+      
+      await runNonInteractive(nonInteractiveConfig, prompt, promptId);
+    }
+    
+    if (!initialPromptsConfig.quiet) {
+      console.log(`✅ Completed ${initialPromptsConfig.prompts.length} initial prompt${initialPromptsConfig.prompts.length === 1 ? '' : 's'}`);
+    }
+  }
+  
   await runNonInteractive(nonInteractiveConfig, input, prompt_id);
   process.exit(0);
 }
