@@ -38,7 +38,7 @@ update_session() {
     
     echo -e "${BLUE}📝 Updating session: $message${NC}"
     cd "$WORKSPACE_ROOT"
-    ./session-management/update-session.sh "$message" ai-cli
+    ./session-management/update-session.sh "$message" grooveforge
     cd "$PROJECT_ROOT"
 }
 
@@ -46,7 +46,7 @@ update_session() {
 check_changes() {
     echo -e "${BLUE}🔍 Checking for changes...${NC}"
     cd "$WORKSPACE_ROOT"
-    ./session-management/detect-changes.sh ai-cli
+    ./session-management/detect-changes.sh grooveforge
     cd "$PROJECT_ROOT"
 }
 
@@ -61,7 +61,7 @@ start_session() {
     
     echo -e "${BLUE}🚀 Starting agent session for: $agent_name${NC}"
     cd "$WORKSPACE_ROOT"
-    ./session-management/agent-startup-v2.sh "$agent_name" ai-cli
+    ./session-management/agent-startup-v2.sh "$agent_name" grooveforge
     cd "$PROJECT_ROOT"
 }
 

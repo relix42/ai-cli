@@ -5,7 +5,7 @@ This document outlines the custom configurations and enhancements made to this f
 ## Fork Information
 
 - **Original**: [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
-- **Fork**: [relix42/ai-cli](https://github.com/relix42/ai-cli)
+- **Fork**: [relix42/grooveforge](https://github.com/relix42/grooveforge)
 - **Version**: 0.1.13-fork.1
 
 ## Custom Features
@@ -17,11 +17,11 @@ This document outlines the custom configurations and enhancements made to this f
 - Build automation
 
 ### 2. Dual Binary Support
-- `ai-cli` command (new)
+- `grooveforge` command (new)
 - `gemini` command (original compatibility)
 
 ### 3. Custom Package Configuration
-- Updated package name to `@relix42/ai-cli`
+- Updated package name to `@relix42/grooveforge`
 - Fork-specific versioning
 - Updated repository references
 
@@ -30,8 +30,8 @@ This document outlines the custom configurations and enhancements made to this f
 ### Quick Start
 ```bash
 # Clone the repository
-git clone https://github.com/relix42/ai-cli.git
-cd ai-cli
+git clone https://github.com/relix42/grooveforge.git
+cd grooveforge
 
 # Run the enhanced startup script
 ./start_ai_cli.sh

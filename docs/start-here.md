@@ -9,7 +9,7 @@
 1. ✅ **Complete agent registration** in the ai-agent-workspace
 2. ✅ **Read system requirements** from `ai-agent-workspace/agent-initialization-essentials.md`
 3. ✅ **Understand compliance requirements** (signatures, file locations, git format)
-4. ✅ **Run startup script**: `/Users/dhahn/projects/ai-agent-workspace/session-management/agent-startup-v2.sh [agent_id] ai-cli`
+4. ✅ **Run startup script**: `/Users/dhahn/projects/ai-agent-workspace/session-management/agent-startup-v2.sh [agent_id] grooveforge`
 
 ## 📋 **Project Overview**
 
@@ -38,7 +38,7 @@
 ### **Quick Start**
 ```bash
 # Navigate to project
-cd ai-cli
+cd grooveforge
 
 # Enhanced startup (recommended)
 ./gf.sh
@@ -74,7 +74,7 @@ npm run debug          # Debug mode
 ## 🏗️ **Project Structure**
 
 ```
-ai-cli/
+grooveforge/
 ├── packages/          # Source packages
 ├── bundle/           # Built output
 ├── docs/             # Documentation
@@ -114,10 +114,10 @@ export DEBUG=1                    # Debug mode
 ```bash
 # Update session (required)
 cd /Users/dhahn/projects/ai-agent-workspace
-./session-management/update-session.sh "your progress update" ai-cli
+./session-management/update-session.sh "your progress update" grooveforge
 
 # Check for changes
-./session-management/detect-changes.sh ai-cli
+./session-management/detect-changes.sh grooveforge
 ```
 
 ### **Git Workflow**
@@ -150,7 +150,7 @@ npm test
 ```
 
 ### **Remote Configuration**
-- `origin`: https://github.com/relix42/ai-cli.git (your fork)
+- `origin`: https://github.com/relix42/grooveforge.git (your fork)
 - `upstream`: https://github.com/google-gemini/gemini-cli.git (original)
 
 ## 🎯 **Development Focus Areas**

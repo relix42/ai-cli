@@ -8,10 +8,10 @@
 Every response MUST end with: `🤖 Navigating with precision and care YourAgentName`
 
 ### **2. File Location Rules (XDG Standard)**
-- **Config files**: `~/.config/ai-cli/`
-- **Data files**: `~/.local/share/ai-cli/`
-- **Cache files**: `~/.cache/ai-cli/`
-- **State files**: `~/.local/state/ai-cli/`
+- **Config files**: `~/.config/grooveforge/`
+- **Data files**: `~/.local/share/grooveforge/`
+- **Cache files**: `~/.cache/grooveforge/`
+- **State files**: `~/.local/state/grooveforge/`
 - **NEVER create files in**: `~/` (home directory root)
 
 ### **3. Session Management**
@@ -41,7 +41,7 @@ git commit -m \"Agent SamuelBlue: docs: update development guide\"
 ### **1. Initial Setup**
 ```bash
 # Navigate to project
-cd ai-cli
+cd grooveforge
 
 # Setup agent environment
 npm run agent:setup
@@ -112,7 +112,7 @@ npm run debug          # Debug mode
 ## 📁 **Project Structure Understanding**
 
 ```
-ai-cli/
+grooveforge/
 ├── packages/                    # Source packages
 │   ├── cli/                    # Main CLI package
 │   ├── core/                   # Core functionality
@@ -218,14 +218,14 @@ git commit -m \"Agent YourName: chore: sync with upstream\"
 ❌ **Wrong**: Creating files in `~/`
 ```bash
 # DON'T DO THIS
-echo "config" > ~/ai-cli-config.json
+echo "config" > ~/grooveforge-config.json
 ```
 
 ✅ **Correct**: Using XDG locations
 ```bash
 # DO THIS INSTEAD
-mkdir -p ~/.config/ai-cli
-echo "config" > ~/.config/ai-cli/config.json
+mkdir -p ~/.config/grooveforge
+echo "config" > ~/.config/grooveforge/config.json
 ```
 
 ### **Missing Session Updates**
