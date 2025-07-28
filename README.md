@@ -1,41 +1,44 @@
-# Chat CLI
+# GrooveForge
 
-[![Chat CLI CI](https://github.com/relix42/chat-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/relix42/chat-cli/actions/workflows/ci.yml)
+[![GrooveForge CI](https://github.com/relix42/grooveforge/actions/workflows/ci.yml/badge.svg)](https://github.com/relix42/grooveforge/actions/workflows/ci.yml)
 
-![Chat CLI Screenshot](./docs/assets/chat-screenshot.png)
+![GrooveForge Screenshot](./docs/assets/grooveforge-screenshot.png)
 
-This repository contains Chat CLI, a local-first AI chat interface that supports Ollama and Claude models without sending data to Google.
+**🎵⚒️ Find your groove, forge your future with AI**
 
-## About Chat CLI
+GrooveForge is a local-first AI development companion that helps you find your coding rhythm and forge ideas into reality.
 
-Chat CLI is a privacy-focused fork of the [Google Gemini CLI](https://github.com/google-gemini/gemini-cli) that removes all Google dependencies and focuses on local AI interactions. It supports Ollama for local model inference and Claude-code-router for Claude API access.
+## About GrooveForge
 
-With Chat CLI you can:
+GrooveForge is a privacy-focused fork of the [Google Gemini CLI](https://github.com/google-gemini/gemini-cli) that removes all Google dependencies and focuses on local AI interactions. It supports Ollama for local model inference and Claude API for cloud-based assistance.
 
-- Chat with local AI models through Ollama integration
-- Access Claude models through claude-code-router
-- Query and edit large codebases with AI assistance
-- Generate code and documentation with AI help
+With GrooveForge you can:
+
+- Find your development groove with rhythmic AI assistance
+- Forge ideas into reality with local Ollama models
+- Access Claude models for cloud-based AI collaboration
+- Query and edit large codebases with AI guidance
+- Generate code and documentation with creative AI help
 - Use tools and MCP servers for extended capabilities
-- Keep all interactions local and private (no Google data collection)
+- Keep all interactions private (no Google data collection)
 
 ## Quickstart
 
 ### Installation
 
 1. **Prerequisites:** Ensure you have [Node.js version 20](https://nodejs.org/en/download) or higher installed.
-2. **Install Chat CLI:**
+2. **Install GrooveForge:**
 
    ```bash
-   npm install -g @relix42/chat-cli
+   npm install -g @relix42/grooveforge
    ```
 
    Then, run the CLI from anywhere:
 
    ```bash
-   chat-cli
+   grooveforge
    # or
-   chat
+   groove
    ```
 
 ### Local Development
@@ -43,8 +46,8 @@ With Chat CLI you can:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/relix42/chat-cli.git
-   cd chat-cli
+   git clone https://github.com/relix42/grooveforge.git
+   cd grooveforge
    ```
 
 2. **Install dependencies and build:**
@@ -59,12 +62,12 @@ With Chat CLI you can:
    ```bash
    npm start
    # or use the enhanced startup script
-   ./start_chat_cli.sh
+   ./start_grooveforge.sh
    ```
 
 ### Configuration
 
-Chat CLI supports two main AI providers:
+GrooveForge supports two main AI providers:
 
 #### Option 1: Ollama (Local Models)
 
@@ -76,7 +79,7 @@ Chat CLI supports two main AI providers:
    # or any other model you prefer
    ```
 
-3. **Configure Chat CLI:**
+3. **Configure GrooveForge:**
 
    ```bash
    export CHAT_CLI_PROVIDER="ollama"
@@ -86,33 +89,33 @@ Chat CLI supports two main AI providers:
 #### Option 2: Claude (via claude-code-router)
 
 1. **Set up claude-code-router:** Follow the [claude-code-router setup guide](https://github.com/anthropics/claude-code-router)
-2. **Configure Chat CLI:**
+2. **Configure GrooveForge:**
 
    ```bash
    export CHAT_CLI_PROVIDER="claude"
    export CLAUDE_API_KEY="your_claude_api_key"
    ```
 
-You are now ready to use Chat CLI!
+You are now ready to use GrooveForge!
 
 ## Examples
 
-Once Chat CLI is configured, you can start chatting with AI models:
+Once GrooveForge is configured, you can start forging with AI:
 
 You can start a project from a new directory:
 
 ```sh
 cd new-project/
-chat-cli
-> Write me a Discord bot that answers questions using a FAQ.md file I will provide
+grooveforge
+> Help me forge a Discord bot that answers questions using a FAQ.md file
 ```
 
 Or work with an existing project:
 
 ```sh
-git clone https://github.com/relix42/chat-cli
-cd chat-cli
-chat
+git clone https://github.com/relix42/grooveforge
+cd grooveforge
+groove
 > Give me a summary of all of the changes that went in yesterday
 ```
 

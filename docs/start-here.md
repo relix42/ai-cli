@@ -1,6 +1,6 @@
-# 💬 Chat CLI - Start Here
+# 🎵⚒️ GrooveForge - Start Here
 
-**Local-First AI Chat Interface for Ollama and Claude Models**
+**Find Your Groove, Forge Your Future with AI**
 
 ## 🚨 **MANDATORY FIRST STEP FOR ALL AI AGENTS**
 
@@ -13,15 +13,16 @@
 
 ## 📋 **Project Overview**
 
-### **What is Chat CLI?**
+### **What is GrooveForge?**
 - **Based on**: [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
-- **Purpose**: Local-first AI chat interface without Google dependencies
+- **Purpose**: Local-first AI development companion for finding your coding groove
 - **Language**: TypeScript/Node.js
 - **Build System**: ESBuild
 - **Package Manager**: NPM
 
 ### **Key Features**
-- 💬 **Local AI Chat**: Direct interface to Ollama and Claude models
+- 🎵 **Find Your Groove**: Rhythmic AI assistance for productive development
+- ⚒️ **Forge Ideas**: Transform concepts into reality with AI collaboration
 - 🔒 **Privacy-First**: No Google data collection or dependencies
 - 🚀 **Enhanced Startup**: Automated dependency checking and setup
 - 📚 **Improved Documentation**: Better setup guides and configuration
@@ -40,7 +41,7 @@
 cd ai-cli
 
 # Enhanced startup (recommended)
-./start_chat_cli.sh
+./start_grooveforge.sh
 
 # Or manual setup
 npm install
@@ -171,13 +172,13 @@ npm test
 ## 🚨 **Compliance Requirements**
 
 ### **File Locations (XDG Standard)**
-- Config files: `~/.config/chat-cli/`
-- Data files: `~/.local/share/chat-cli/`
-- Cache files: `~/.cache/chat-cli/`
-- State files: `~/.local/state/chat-cli/`
+- Config files: `~/.config/grooveforge/`
+- Data files: `~/.local/share/grooveforge/`
+- Cache files: `~/.cache/grooveforge/`
+- State files: `~/.local/state/grooveforge/`
 
 ### **Required Signature**
-Every response must end with: `💬 Navigating with precision and care YourAgentName`
+Every response must end with: `🎵⚒️ Forging ahead with precision and care YourAgentName`
 
 ### **Session Updates**
 Update sessions regularly with progress and changes.
@@ -207,6 +208,6 @@ Update sessions regularly with progress and changes.
 
 ---
 
-**Ready to start developing? Run `./start_ai_cli.sh` and begin enhancing the AI CLI!**
+**Ready to start developing? Run `./start_grooveforge.sh` and begin enhancing GrooveForge!**
 
-🤖 Navigating with precision and care SamuelBlue
+🎵⚒️ Forging ahead with precision and care SamuelBlue

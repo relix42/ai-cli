@@ -10,7 +10,7 @@ import { MessageType } from '../types.js';
 
 export const forkCommand: SlashCommand = {
   name: 'fork',
-  description: 'show Chat CLI information and features',
+  description: 'show GrooveForge information and features',
   kind: CommandKind.BUILT_IN,
   action: async (context) => {
     const forkInfo = await getForkInfo();
@@ -27,7 +27,7 @@ export const forkCommand: SlashCommand = {
       type: MessageType.INFO,
       text: `
 
-💬 **Chat CLI Details**
+🎵⚒️ **GrooveForge Details**
 
 **Name:** ${forkInfo.name}
 **Version:** ${forkInfo.version}
@@ -42,13 +42,13 @@ ${forkInfo.features.map(feature => `• ${feature}`).join('\n')}
 • Original Repository: ${forkInfo.originalRepo}
 
 **Usage:**
-• Use \`chat-cli\` command for full interface
-• Use \`chat\` command for quick access
-• Run \`./start_chat_cli.sh\` for guided setup
+• Use \`grooveforge\` command for full interface
+• Use \`groove\` command for quick access
+• Run \`./start_grooveforge.sh\` for guided setup
 
-**Local AI Focus:**
-Chat CLI is designed for local AI interactions without sending data to Google.
-Supports Ollama for local models and Claude-code-router for Claude access.`
+**Find Your Groove:**
+GrooveForge helps you find your development rhythm with AI assistance.
+Forge ideas into reality with local Ollama models or Claude API integration.`
     }, Date.now());
   },
 };

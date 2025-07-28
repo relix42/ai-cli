@@ -1,5 +1,5 @@
 {
-  "name": "@relix42/chat-cli",
+  "name": "@relix42/grooveforge",
   "version": "1.0.0",
   "engines": {
     "node": ">=20.0.0"
@@ -11,7 +11,7 @@
   "private": "true",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/relix42/chat-cli.git"
+    "url": "git+https://github.com/relix42/grooveforge.git"
   },
   "config": {
     "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.1.13"
@@ -54,8 +54,8 @@
     "agent:validate": "./scripts/agent-integration.sh validate"
   },
   "bin": {
-    "chat-cli": "bundle/chat.js",
-    "chat": "bundle/chat.js"
+    "grooveforge": "bundle/grooveforge.js",
+    "groove": "bundle/grooveforge.js"
   },
   "files": [
     "bundle/",

@@ -10,7 +10,7 @@ import { ChatClient } from '../../clients/ChatClient.js';
 
 export const testChatCommand: SlashCommand = {
   name: 'testchat',
-  description: 'test Chat CLI functionality with Ollama or Claude',
+  description: 'test GrooveForge functionality with Ollama or Claude',
   kind: CommandKind.BUILT_IN,
   action: async (context, args) => {
     try {
@@ -19,7 +19,7 @@ export const testChatCommand: SlashCommand = {
       if (!provider) {
         context.ui.addItem({
           type: MessageType.ERROR,
-          text: `Chat CLI not configured. Please set CHAT_CLI_PROVIDER environment variable.
+          text: `GrooveForge not configured. Please set CHAT_CLI_PROVIDER environment variable.
 
 For Ollama:
   export CHAT_CLI_PROVIDER="ollama"
@@ -34,7 +34,7 @@ For Claude:
 
       context.ui.addItem({
         type: MessageType.INFO,
-        text: `Testing Chat CLI with provider: ${provider}`
+        text: `Testing GrooveForge with provider: ${provider}`
       }, Date.now());
 
       // Create chat client
@@ -45,7 +45,7 @@ For Claude:
       if (!isAvailable) {
         context.ui.addItem({
           type: MessageType.ERROR,
-          text: `Chat CLI provider "${provider}" is not available. Please check your configuration:
+          text: `GrooveForge provider "${provider}" is not available. Please check your configuration:
 
 For Ollama:
   - Ensure Ollama is running: ollama serve
@@ -60,7 +60,7 @@ For Claude:
 
       context.ui.addItem({
         type: MessageType.INFO,
-        text: `✅ Chat CLI provider "${provider}" is available!`
+        text: `✅ GrooveForge provider "${provider}" is available!`
       }, Date.now());
 
       // Test a simple chat
@@ -80,30 +80,30 @@ For Claude:
         
         context.ui.addItem({
           type: MessageType.INFO,
-          text: `✅ Chat CLI Response (${response.provider}/${response.model}):\n\n${response.content}`
+          text: `✅ GrooveForge Response (${response.provider}/${response.model}):\n\n${response.content}`
         }, Date.now());
 
         context.ui.addItem({
           type: MessageType.INFO,
-          text: `🎉 Chat CLI is working! You can now use it as an alternative to Google Gemini.
+          text: `🎉 GrooveForge is working! Find your groove and forge ahead with AI.
 
-To use Chat CLI in your workflow:
+To use GrooveForge in your workflow:
 1. Set your preferred provider with CHAT_CLI_PROVIDER
 2. Use the /testchat command to test functionality
-3. Future versions will integrate Chat CLI as the primary interface`
+3. Future versions will integrate GrooveForge as the primary interface`
         }, Date.now());
 
       } catch (error) {
         context.ui.addItem({
           type: MessageType.ERROR,
-          text: `Failed to get response from Chat CLI: ${error instanceof Error ? error.message : String(error)}`
+          text: `Failed to get response from GrooveForge: ${error instanceof Error ? error.message : String(error)}`
         }, Date.now());
       }
 
     } catch (error) {
       context.ui.addItem({
         type: MessageType.ERROR,
-        text: `Chat CLI error: ${error instanceof Error ? error.message : String(error)}`
+        text: `GrooveForge error: ${error instanceof Error ? error.message : String(error)}`
       }, Date.now());
     }
   },

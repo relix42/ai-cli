@@ -20,20 +20,20 @@ export async function getForkInfo(): Promise<ForkInfo> {
   const pkgJson = await getPackageJson();
   
   return {
-    name: 'Chat CLI',
+    name: 'GrooveForge',
     version: pkgJson?.version || 'unknown',
     originalName: 'Gemini CLI',
     originalRepo: 'https://github.com/google-gemini/gemini-cli',
-    forkRepo: 'https://github.com/relix42/chat-cli',
-    description: 'Local AI chat interface supporting Ollama and Claude models',
+    forkRepo: 'https://github.com/relix42/grooveforge',
+    description: 'Find your groove, forge your future - Local AI development companion',
     features: [
-      'Ollama model support for local AI inference',
-      'Claude-code-router integration',
-      'No Google dependencies or data collection',
-      'Local-first AI interactions',
-      'Enhanced startup script with dependency checking',
-      'Agent workspace integration',
-      'XDG compliance for configuration files'
+      'Rhythmic workflow with AI assistance',
+      'Ollama integration for local AI inference',
+      'Claude API support for cloud AI',
+      'Privacy-first - no Google dependencies',
+      'Forge ideas into reality with AI collaboration',
+      'Enhanced development environment',
+      'Agent workspace integration'
     ]
   };
 }

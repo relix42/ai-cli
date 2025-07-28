@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Chat CLI Test Script
-# Tests the basic functionality of Chat CLI
+# GrooveForge Test Script
+# Tests the basic functionality of GrooveForge
 
-echo "🧪 Testing Chat CLI Functionality"
-echo "=================================="
+echo "🧪 Testing GrooveForge Functionality"
+echo "===================================="
 
 # Test 1: Check if CLI starts without errors
 echo "📋 Test 1: CLI Help Command"
@@ -52,11 +52,11 @@ else
 fi
 
 echo ""
-echo "🎉 All tests passed! Chat CLI is ready for development."
+echo "🎉 All tests passed! GrooveForge is ready for development."
 echo ""
 echo "🚀 Next steps:"
 echo "   1. Set up provider (CHAT_CLI_PROVIDER=ollama or claude)"
-echo "   2. Run: ./start_chat_cli.sh"
-echo "   3. Use /testchat command to test Chat CLI functionality"
-echo "   4. Use /fork command to see Chat CLI information"
-echo "   5. Start chatting with AI models!"
+echo "   2. Run: ./start_grooveforge.sh"
+echo "   3. Use /testchat command to test GrooveForge functionality"
+echo "   4. Use /fork command to see GrooveForge information"
+echo "   5. Find your groove and forge ahead with AI!"

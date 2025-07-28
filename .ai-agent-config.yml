@@ -1,11 +1,11 @@
-# Chat CLI Project Configuration
-# Agent workspace integration for the Chat CLI project
+# GrooveForge Project Configuration
+# Agent workspace integration for the GrooveForge project
 
 project:
-  name: "chat-cli"
-  emoji: "💬"
+  name: "grooveforge"
+  emoji: "🎵⚒️"
   type: "development"
-  description: "Local-first AI chat interface supporting Ollama and Claude models"
+  description: "Find your groove, forge your future - Local AI development companion"
   
 agent_workspace:
   enabled: true
@@ -37,7 +37,7 @@ scripts:
   
 integration:
   upstream_repo: "https://github.com/google-gemini/gemini-cli.git"
-  fork_repo: "https://github.com/relix42/chat-cli.git"
+  fork_repo: "https://github.com/relix42/grooveforge.git"
   sync_strategy: "merge"
   
 features:
