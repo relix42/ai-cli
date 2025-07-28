@@ -116,7 +116,18 @@ export function AuthDialog({
     if (process.env.GEMINI_API_KEY) {
       return String(item.value) === String(AuthType.USE_GEMINI);
     }
+    
+    // Only default to OLLAMA if it's already configured
+    if (process.env.CHAT_CLI_PROVIDER === 'ollama') {
+      return String(item.value) === 'OLLAMA';
+    }
+    
+    // Only default to CLAUDE if it's already configured
+    if (process.env.CHAT_CLI_PROVIDER === 'claude') {
+      return String(item.value) === 'CLAUDE';
+    }
 
+    // Default to OLLAMA as the recommended option
     return String(item.value) === 'OLLAMA';
   });
   

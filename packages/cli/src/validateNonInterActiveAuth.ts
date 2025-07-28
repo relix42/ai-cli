@@ -9,6 +9,15 @@ import { USER_SETTINGS_PATH } from './config/settings.js';
 import { validateAuthMethod } from './config/auth.js';
 
 function getAuthTypeFromEnv(): AuthType | undefined {
+  // Check for GrooveForge local AI providers first
+  if (process.env.CHAT_CLI_PROVIDER === 'ollama') {
+    return 'OLLAMA' as AuthType;
+  }
+  if (process.env.CHAT_CLI_PROVIDER === 'claude') {
+    return 'CLAUDE' as AuthType;
+  }
+  
+  // Check for Google AI providers
   if (process.env.GOOGLE_GENAI_USE_GCA === 'true') {
     return AuthType.LOGIN_WITH_GOOGLE;
   }
@@ -29,7 +38,12 @@ export async function validateNonInteractiveAuth(
 
   if (!effectiveAuthType) {
     console.error(
-      `Please set an Auth method in your ${USER_SETTINGS_PATH} or specify one of the following environment variables before running: GEMINI_API_KEY, GOOGLE_GENAI_USE_VERTEXAI, GOOGLE_GENAI_USE_GCA`,
+      `Please set an Auth method in your ${USER_SETTINGS_PATH} or specify one of the following environment variables before running:\n` +
+      `  • CHAT_CLI_PROVIDER=ollama (for local Ollama)\n` +
+      `  • CHAT_CLI_PROVIDER=claude (for Claude API)\n` +
+      `  • GEMINI_API_KEY (for Google Gemini)\n` +
+      `  • GOOGLE_GENAI_USE_VERTEXAI=true (for Vertex AI)\n` +
+      `  • GOOGLE_GENAI_USE_GCA=true (for Google Cloud Auth)`,
     );
     process.exit(1);
   }
