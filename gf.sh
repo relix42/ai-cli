@@ -56,5 +56,5 @@ fi
 echo "🚀 Launching GrooveForge..."
 echo ""
 
-# Start the CLI
-npm start "$@"
+# Start the CLI - use -- to separate npm args from application args
+npm start -- "$@"
