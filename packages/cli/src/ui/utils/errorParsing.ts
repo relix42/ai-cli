@@ -13,7 +13,7 @@ import {
   isGenericQuotaExceededError,
   isApiError,
   isStructuredError,
-} from '@google/gemini-cli-core';
+} from '@relix42/grooveforge-core';
 
 // Free Tier message functions
 const getRateLimitErrorMessageGoogleFree = (

@@ -7,7 +7,7 @@
 import {
   getErrorMessage,
   loadServerHierarchicalMemory,
-} from '@google/gemini-cli-core';
+} from '@relix42/grooveforge-core';
 import { MessageType } from '../types.js';
 import {
   CommandKind,

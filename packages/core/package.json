@@ -1,10 +1,10 @@
 {
-  "name": "@google/gemini-cli-core",
-  "version": "0.1.13",
-  "description": "Gemini CLI Core",
+  "name": "@relix42/grooveforge-core",
+  "version": "1.0.0",
+  "description": "GrooveForge Core - Independent AI Assistant Core Library",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/google-gemini/gemini-cli.git"
+    "url": "git+https://github.com/relix42/grooveforge.git"
   },
   "type": "module",
   "main": "dist/index.js",

@@ -6,7 +6,7 @@
 
 import { ICommandLoader } from './types.js';
 import { SlashCommand } from '../ui/commands/types.js';
-import { Config } from '@google/gemini-cli-core';
+import { Config } from '@relix42/grooveforge-core';
 import { aboutCommand } from '../ui/commands/aboutCommand.js';
 import { authCommand } from '../ui/commands/authCommand.js';
 import { forkCommand } from '../ui/commands/forkCommand.js';
@@ -16,7 +16,6 @@ import { chatCommand } from '../ui/commands/chatCommand.js';
 import { clearCommand } from '../ui/commands/clearCommand.js';
 import { compressCommand } from '../ui/commands/compressCommand.js';
 import { copyCommand } from '../ui/commands/copyCommand.js';
-import { corgiCommand } from '../ui/commands/corgiCommand.js';
 import { docsCommand } from '../ui/commands/docsCommand.js';
 import { editorCommand } from '../ui/commands/editorCommand.js';
 import { extensionsCommand } from '../ui/commands/extensionsCommand.js';
@@ -32,7 +31,6 @@ import { restoreCommand } from '../ui/commands/restoreCommand.js';
 import { statsCommand } from '../ui/commands/statsCommand.js';
 import { themeCommand } from '../ui/commands/themeCommand.js';
 import { toolsCommand } from '../ui/commands/toolsCommand.js';
-import { vimCommand } from '../ui/commands/vimCommand.js';
 
 /**
  * Loads the core, hard-coded slash commands that are an integral part
@@ -59,7 +57,6 @@ export class BuiltinCommandLoader implements ICommandLoader {
       clearCommand,
       compressCommand,
       copyCommand,
-      corgiCommand,
       docsCommand,
       editorCommand,
       extensionsCommand,
@@ -67,15 +64,14 @@ export class BuiltinCommandLoader implements ICommandLoader {
       ideCommand(this.config),
       initialPromptsCommand,
       logsCommand,
+      mcpCommand,
       memoryCommand,
       privacyCommand,
-      mcpCommand,
       quitCommand,
       restoreCommand(this.config),
       statsCommand,
       themeCommand,
       toolsCommand,
-      vimCommand,
     ];
 
     return allDefinitions.filter((cmd): cmd is SlashCommand => cmd !== null);

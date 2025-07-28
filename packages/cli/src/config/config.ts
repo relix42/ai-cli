@@ -20,7 +20,7 @@ import {
   TelemetryTarget,
   FileFilteringOptions,
   IdeClient,
-} from '@google/gemini-cli-core';
+} from '@relix42/grooveforge-core';
 import { Settings } from './settings.js';
 
 import { Extension, annotateActiveExtensions } from './extension.js';

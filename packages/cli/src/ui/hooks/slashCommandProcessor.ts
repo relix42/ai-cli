@@ -14,7 +14,7 @@ import {
   GitService,
   Logger,
   ToolConfirmationOutcome,
-} from '@google/gemini-cli-core';
+} from '@relix42/grooveforge-core';
 import { useSessionStats } from '../contexts/SessionContext.js';
 import {
   Message,

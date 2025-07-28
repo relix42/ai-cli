@@ -14,11 +14,11 @@ import {
   getErrorMessage,
   loadServerHierarchicalMemory,
   type FileDiscoveryService,
-} from '@google/gemini-cli-core';
+} from '@relix42/grooveforge-core';
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('@relix42/grooveforge-core', async (importOriginal) => {
   const original =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('@relix42/grooveforge-core')>();
   return {
     ...original,
     getErrorMessage: vi.fn((error: unknown) => {

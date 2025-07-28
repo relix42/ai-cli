@@ -1,0 +1,2 @@
+{"timestamp":"2025-07-28T21:37:57.423Z","sessionId":"07d2eba7-2946-4287-ad86-ae84eb327865","category":"session","event":"user_prompt","data":{"event.name":"user_prompt","event.timestamp":"2025-07-28T21:37:57.423Z","prompt":"exit","prompt_id":"ab6819cdf63058","prompt_length":4}}
+{"timestamp":"2025-07-28T21:37:57.444Z","sessionId":"07d2eba7-2946-4287-ad86-ae84eb327865","category":"session","event":"user_prompt","data":{"event.name":"user_prompt","event.timestamp":"2025-07-28T21:37:57.444Z","prompt":"/about","prompt_id":"45eac33c8e9b18","auth_type":"OLLAMA","prompt_length":6}}

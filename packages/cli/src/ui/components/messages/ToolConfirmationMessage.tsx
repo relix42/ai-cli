@@ -14,7 +14,7 @@ import {
   ToolExecuteConfirmationDetails,
   ToolMcpConfirmationDetails,
   Config,
-} from '@google/gemini-cli-core';
+} from '@relix42/grooveforge-core';
 import {
   RadioButtonSelect,
   RadioSelectItem,

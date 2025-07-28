@@ -11,7 +11,7 @@ import {
   allowEditorTypeInSandbox,
   checkHasEditorType,
   EditorType,
-} from '@google/gemini-cli-core';
+} from '@relix42/grooveforge-core';
 
 interface UseEditorSettingsReturn {
   isEditorDialogOpen: boolean;

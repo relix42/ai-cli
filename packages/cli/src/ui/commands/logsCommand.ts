@@ -6,7 +6,7 @@
 
 import { CommandKind, SlashCommand } from './types.js';
 import { MessageType } from '../types.js';
-import { LogAnalyzer } from '@google/gemini-cli-core';
+import { LogAnalyzer } from '@relix42/grooveforge-core';
 import * as path from 'path';
 import * as fs from 'fs';
 

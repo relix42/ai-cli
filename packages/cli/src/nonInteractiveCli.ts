@@ -11,7 +11,7 @@ import {
   ToolRegistry,
   shutdownTelemetry,
   isTelemetrySdkInitialized,
-} from '@google/gemini-cli-core';
+} from '@relix42/grooveforge-core';
 import {
   Content,
   Part,
