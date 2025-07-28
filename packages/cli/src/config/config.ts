@@ -402,7 +402,7 @@ export async function loadCliConfig(
     sandbox: sandboxConfig,
     targetDir: process.cwd(),
     debugMode,
-    question: argv.promptInteractive || argv.prompt || '',
+    question: argv.prompt || '',
     fullContext: argv.allFiles || argv.all_files || false,
     coreTools: settings.coreTools || undefined,
     excludeTools,
