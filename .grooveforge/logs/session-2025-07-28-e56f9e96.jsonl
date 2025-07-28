@@ -1,0 +1,1 @@
+{"timestamp":"2025-07-28T23:17:05.165Z","sessionId":"e56f9e96-6fda-4991-9b2e-f103e769e6a4","category":"session","event":"user_prompt","data":{"event.name":"user_prompt","event.timestamp":"2025-07-28T23:17:05.164Z","prompt":"Testing symlink resolution","prompt_id":"00c8c7db89f2e","prompt_length":26}}
