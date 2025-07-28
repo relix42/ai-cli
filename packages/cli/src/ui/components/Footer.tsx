@@ -12,7 +12,7 @@ import { ConsoleSummaryDisplay } from './ConsoleSummaryDisplay.js';
 import process from 'node:process';
 import Gradient from 'ink-gradient';
 import { MemoryUsageDisplay } from './MemoryUsageDisplay.js';
-import { getDisplayModel, isUsingChatCLI, getTokenCountInfo, formatTokenCount } from '../utils/modelDisplay.js';
+import { isUsingChatCLI, getTokenCountInfo, formatTokenCount } from '../utils/modelDisplay.js';
 
 interface FooterProps {
   model: string;
@@ -47,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({
   inputTokens = 0,
   outputTokens = 0,
 }) => {
-  const displayModel = getDisplayModel(model);
+  const displayModel = model;
   const isUsingChatProvider = isUsingChatCLI();
   const tokenInfo = getTokenCountInfo(inputTokens, outputTokens);
   const limit = tokenLimit(model);
@@ -100,7 +100,7 @@ export const Footer: React.FC<FooterProps> = ({
         )}
       </Box>
 
-      {/* Right Section: Gemini Label and Console Summary */}
+      {/* Right Section: Model Display and Console Summary */}
       <Box alignItems="center">
         <Text color={Colors.AccentBlue}>
           {' '}
