@@ -1,0 +1,1 @@
+{"timestamp":"2025-07-28T23:11:59.326Z","sessionId":"3a4c61ad-1b60-48b2-a800-2e79735e3c5e","category":"session","event":"user_prompt","data":{"event.name":"user_prompt","event.timestamp":"2025-07-28T23:11:59.325Z","prompt_length":5,"prompt_id":"3a4c61ad-1b60-48b2-a800-2e79735e3c5e########0","auth_type":"OLLAMA","prompt":"/quit"}}

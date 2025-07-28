@@ -4,9 +4,19 @@
 # Find your groove, forge your future with AI
 # Integrated with ai-agent-workspace
 
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Change to the GrooveForge directory
+cd "$SCRIPT_DIR" || {
+    echo "❌ Failed to change to GrooveForge directory: $SCRIPT_DIR"
+    exit 1
+}
+
 echo "🎵⚒️ Starting GrooveForge - Find Your Groove, Forge Your Future"
 echo "========================================================"
 echo "🔗 Agent Workspace Integration Enabled"
+echo "📁 Working from: $SCRIPT_DIR"
 
 # Check if Node.js is installed
 if ! command -v node &> /dev/null; then
