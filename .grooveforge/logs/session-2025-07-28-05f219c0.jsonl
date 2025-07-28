@@ -1,0 +1,1 @@
+{"timestamp":"2025-07-28T23:14:34.412Z","sessionId":"05f219c0-c74d-4611-a9c6-64daddecc5e3","category":"session","event":"user_prompt","data":{"event.name":"user_prompt","event.timestamp":"2025-07-28T23:14:34.411Z","prompt":"Testing from /tmp with direct path","prompt_id":"3aacdd706fe748","prompt_length":34}}
