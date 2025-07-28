@@ -93,5 +93,9 @@ export * from './telemetry/index.js';
 // Export local telemetry functions
 export * from './local-telemetry/LocalLogger.js';
 export * from './local-telemetry/LogAnalyzer.js';
+
+// Export local AI providers
+export * from './local-ai/OllamaContentGenerator.js';
+export * from './local-ai/ClaudeContentGenerator.js';
 export { sessionId } from './utils/session.js';
 export * from './utils/browser.js';
