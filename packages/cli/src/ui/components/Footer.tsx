@@ -7,7 +7,7 @@
 import React from 'react';
 import { Box, Text } from 'ink';
 import { Colors } from '../colors.js';
-import { shortenPath, tildeifyPath, tokenLimit } from '@google/gemini-cli-core';
+import { shortenPath, tildeifyPath, tokenLimit, type Config } from '@google/gemini-cli-core';
 import { ConsoleSummaryDisplay } from './ConsoleSummaryDisplay.js';
 import process from 'node:process';
 import Gradient from 'ink-gradient';
@@ -15,7 +15,7 @@ import { MemoryUsageDisplay } from './MemoryUsageDisplay.js';
 import { isUsingChatCLI, getTokenCountInfo, formatTokenCount } from '../utils/modelDisplay.js';
 
 interface FooterProps {
-  model: string;
+  config: Config;
   targetDir: string;
   branchName?: string;
   debugMode: boolean;
@@ -32,7 +32,7 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({
-  model,
+  config,
   targetDir,
   branchName,
   debugMode,
@@ -47,10 +47,10 @@ export const Footer: React.FC<FooterProps> = ({
   inputTokens = 0,
   outputTokens = 0,
 }) => {
-  const displayModel = model;
+  const displayModel = config.getModel();
   const isUsingChatProvider = isUsingChatCLI();
   const tokenInfo = getTokenCountInfo(inputTokens, outputTokens);
-  const limit = tokenLimit(model);
+  const limit = tokenLimit(displayModel);
   const percentage = promptTokenCount / limit;
 
   return (
