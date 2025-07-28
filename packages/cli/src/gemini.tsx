@@ -152,16 +152,38 @@ export async function main() {
     process.exit(0);
   }
 
-  // Set a default auth type if one isn't set.
-  if (!settings.merged.selectedAuthType) {
-    if (process.env.CLOUD_SHELL === 'true') {
-      settings.setValue(
-        SettingScope.User,
-        'selectedAuthType',
-        AuthType.CLOUD_SHELL,
-      );
-    }
+  // Set or override auth type based on environment variables
+  // Environment variables take precedence over settings for better CLI experience
+  if (process.env.CLOUD_SHELL === 'true') {
+    settings.setValue(
+      SettingScope.User,
+      'selectedAuthType',
+      AuthType.CLOUD_SHELL,
+    );
+  } else if (process.env.CHAT_CLI_PROVIDER === 'ollama') {
+    settings.setValue(
+      SettingScope.User,
+      'selectedAuthType',
+      'OLLAMA' as AuthType,
+    );
+  } else if (process.env.CHAT_CLI_PROVIDER === 'claude') {
+    settings.setValue(
+      SettingScope.User,
+      'selectedAuthType',
+      'CLAUDE' as AuthType,
+    );
+  } else if (process.env.GEMINI_API_KEY) {
+    settings.setValue(
+      SettingScope.User,
+      'selectedAuthType',
+      AuthType.USE_GEMINI,
+    );
+  } else if (!settings.merged.selectedAuthType) {
+    // If no environment variables are set and no auth type in settings,
+    // leave selectedAuthType as undefined to trigger auth selection
   }
+  // If environment variables are set, they override the settings
+  // If no environment variables are set, use the existing settings value
 
   setMaxSizedBoxDebugging(config.getDebugMode());
 
