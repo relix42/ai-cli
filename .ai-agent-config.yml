@@ -1,0 +1,47 @@
+# AI CLI Project Configuration
+# Agent workspace integration for the AI CLI project
+
+project:
+  name: "ai-cli"
+  emoji: "🤖"
+  type: "development"
+  description: "Enhanced fork of Gemini CLI with custom AI development features"
+  
+agent_workspace:
+  enabled: true
+  session_management: true
+  change_detection: true
+  
+development:
+  language: "typescript"
+  framework: "node"
+  build_system: "esbuild"
+  package_manager: "npm"
+  
+requirements:
+  node_version: ">=20.0.0"
+  npm_version: ">=8.0.0"
+  
+directories:
+  source: "packages/"
+  build: "bundle/"
+  docs: "docs/"
+  tests: "integration-tests/"
+  
+scripts:
+  start: "npm start"
+  build: "npm run build"
+  test: "npm test"
+  lint: "npm run lint"
+  format: "npm run format"
+  
+integration:
+  upstream_repo: "https://github.com/google-gemini/gemini-cli.git"
+  fork_repo: "https://github.com/relix42/ai-cli.git"
+  sync_strategy: "merge"
+  
+features:
+  custom_startup: true
+  enhanced_docs: true
+  dual_binary: true
+  development_tools: true

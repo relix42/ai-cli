@@ -2,9 +2,11 @@
 
 # AI CLI Startup Script
 # Enhanced version of the Gemini CLI with custom configurations
+# Integrated with ai-agent-workspace
 
 echo "🤖 Starting AI CLI - Enhanced Gemini CLI Fork"
-echo "=============================================="
+echo "==============================================="
+echo "🔗 Agent Workspace Integration Enabled"
 
 # Check if Node.js is installed
 if ! command -v node &> /dev/null; then
@@ -22,6 +24,14 @@ if [ "$NODE_VERSION" -lt 20 ]; then
 fi
 
 echo "✅ Node.js $(node --version) detected"
+
+# Agent workspace integration
+if [ -f "./scripts/agent-integration.sh" ]; then
+    echo "🔧 Setting up agent workspace integration..."
+    ./scripts/agent-integration.sh setup
+else
+    echo "⚠️  Agent integration script not found - continuing without workspace integration"
+fi
 
 # Check if dependencies are installed
 if [ ! -d "node_modules" ]; then
