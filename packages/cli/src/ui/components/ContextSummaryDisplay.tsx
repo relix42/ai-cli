@@ -46,12 +46,12 @@ export const ContextSummaryDisplay: React.FC<ContextSummaryDisplayProps> = ({
     return `${count} recent file${count > 1 ? 's' : ''} (ctrl+e to view)`;
   })();
 
-  const geminiMdText = (() => {
+  const memoryFilesText = (() => {
     if (geminiMdFileCount === 0) {
       return '';
     }
     const allNamesTheSame = new Set(contextFileNames).size < 2;
-    const name = allNamesTheSame ? contextFileNames[0] : 'context';
+    const name = allNamesTheSame ? contextFileNames[0] : 'memory';
     return `${geminiMdFileCount} ${name} file${
       geminiMdFileCount > 1 ? 's' : ''
     }`;
@@ -84,8 +84,8 @@ export const ContextSummaryDisplay: React.FC<ContextSummaryDisplayProps> = ({
   if (recentFilesText) {
     summaryParts.push(recentFilesText);
   }
-  if (geminiMdText) {
-    summaryParts.push(geminiMdText);
+  if (memoryFilesText) {
+    summaryParts.push(memoryFilesText);
   }
   if (mcpText) {
     summaryParts.push(mcpText);

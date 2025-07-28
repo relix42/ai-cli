@@ -1,4 +1,8 @@
-## Building and running
+# 🎵⚒️ GrooveForge Development Guide
+
+*Find your groove, forge your future with AI*
+
+## Building and Running
 
 Before submitting any changes, it is crucial to validate them by running the full preflight check. This command will build the repository, run all tests, check for type errors, and lint the code.
 
@@ -54,9 +58,9 @@ This project uses **Vitest** as its primary testing framework. When writing test
 - When adding tests, first examine existing tests to understand and conform to established conventions.
 - Pay close attention to the mocks at the top of existing test files; they reveal critical dependencies and how they are managed in a test environment.
 
-## Git Repo
+## GrooveForge Repository
 
-The main branch for this project is called "main"
+The main branch for GrooveForge is called "main". This is an independent AI CLI focused on privacy, local control, and multi-provider support.
 
 ## JavaScript/TypeScript
 
