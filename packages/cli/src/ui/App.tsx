@@ -348,7 +348,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
             message = `⚡ You have reached your daily ${currentModel} quota limit.
 ⚡ Automatically switching from ${currentModel} to ${fallbackModel} for the remainder of this session.
 ⚡ To increase your limits, upgrade to a Gemini Code Assist Standard or Enterprise plan with higher limits at https://goo.gle/set-up-gemini-code-assist
-⚡ Or you can utilize a Gemini API Key. See: https://goo.gle/gemini-cli-docs-auth#gemini-api-key
+⚡ Or you can utilize a Gemini API Key. See: https://github.com/relix42/grooveforge/blob/main/docs/auth.md#gemini-api-key
 ⚡ You can switch authentication methods by typing /auth`;
           }
         } else if (error && isGenericQuotaExceededError(error)) {
@@ -360,7 +360,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
             message = `⚡ You have reached your daily quota limit.
 ⚡ Automatically switching from ${currentModel} to ${fallbackModel} for the remainder of this session.
 ⚡ To increase your limits, upgrade to a Gemini Code Assist Standard or Enterprise plan with higher limits at https://goo.gle/set-up-gemini-code-assist
-⚡ Or you can utilize a Gemini API Key. See: https://goo.gle/gemini-cli-docs-auth#gemini-api-key
+⚡ Or you can utilize a Gemini API Key. See: https://github.com/relix42/grooveforge/blob/main/docs/auth.md#gemini-api-key
 ⚡ You can switch authentication methods by typing /auth`;
           }
         } else {
@@ -374,7 +374,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
             message = `⚡ Automatically switching from ${currentModel} to ${fallbackModel} for faster responses for the remainder of this session.
 ⚡ Possible reasons for this are that you have received multiple consecutive capacity errors or you have reached your daily ${currentModel} quota limit
 ⚡ To increase your limits, upgrade to a Gemini Code Assist Standard or Enterprise plan with higher limits at https://goo.gle/set-up-gemini-code-assist
-⚡ Or you can utilize a Gemini API Key. See: https://goo.gle/gemini-cli-docs-auth#gemini-api-key
+⚡ Or you can utilize a Gemini API Key. See: https://github.com/relix42/grooveforge/blob/main/docs/auth.md#gemini-api-key
 ⚡ You can switch authentication methods by typing /auth`;
           }
         }
