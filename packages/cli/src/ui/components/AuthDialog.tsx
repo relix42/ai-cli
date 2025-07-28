@@ -35,6 +35,7 @@ export function AuthDialog({
   settings,
   initialErrorMessage,
 }: AuthDialogProps): React.JSX.Element {
+  const [isValidating, setIsValidating] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(() => {
     if (initialErrorMessage) {
       return initialErrorMessage;
@@ -136,45 +137,29 @@ export function AuthDialog({
   // Ensure we have a valid index
   const safeInitialIndex = initialAuthIndex >= 0 ? initialAuthIndex : 0;
 
-  const handleAuthSelect = (authMethod: AuthType | string) => {
-    const error = validateAuthMethod(authMethod as string);
-    if (error) {
-      // Check if this is a setup request
-      if (error.startsWith('SETUP_REQUIRED:')) {
-        const provider = error.split(':')[1];
-        if (provider === 'OLLAMA') {
-          setErrorMessage(
-            '🦙 Ollama Setup Required\n\n' +
-            'To use Ollama (recommended for privacy), please:\n\n' +
-            '1. Install Ollama: https://ollama.ai\n' +
-            '2. Run: ollama pull llama3.2\n' +
-            '3. Set environment variables:\n' +
-            '   export CHAT_CLI_PROVIDER="ollama"\n' +
-            '   export OLLAMA_MODEL="llama3.2"\n\n' +
-            'Then restart GrooveForge with: ./gf.sh'
-          );
-        } else if (provider === 'CLAUDE') {
-          setErrorMessage(
-            '🤖 Claude API Setup Required\n\n' +
-            'To use Claude API, please:\n\n' +
-            '1. Get API key: https://console.anthropic.com\n' +
-            '2. Set environment variables:\n' +
-            '   export CHAT_CLI_PROVIDER="claude"\n' +
-            '   export CLAUDE_API_KEY="your_api_key_here"\n\n' +
-            'Then restart GrooveForge with: ./gf.sh'
-          );
-        }
-      } else {
+  const handleAuthSelect = async (authMethod: AuthType | string) => {
+    setIsValidating(true);
+    setErrorMessage(null);
+    
+    try {
+      const error = await validateAuthMethod(authMethod as string);
+      if (error) {
         setErrorMessage(error);
+      } else {
+        setErrorMessage(null);
+        onSelect(authMethod as AuthType, SettingScope.User);
       }
-    } else {
-      setErrorMessage(null);
-      onSelect(authMethod as AuthType, SettingScope.User);
+    } catch (err) {
+      setErrorMessage(`Validation error: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    } finally {
+      setIsValidating(false);
     }
   };
 
+
+
   useInput((_input, key) => {
-    if (key.escape) {
+    if (key.escape && !isValidating) {
       // Prevent exit if there is an error message.
       // This means they user is not authenticated yet.
       if (errorMessage) {
@@ -208,9 +193,14 @@ export function AuthDialog({
           items={items}
           initialIndex={safeInitialIndex}
           onSelect={handleAuthSelect}
-          isFocused={true}
+          isFocused={!isValidating}
         />
       </Box>
+      {isValidating && (
+        <Box marginTop={1}>
+          <Text color={Colors.AccentBlue}>🔍 Configuring selected provider...</Text>
+        </Box>
+      )}
       {errorMessage && (
         <Box marginTop={1}>
           <Text color={Colors.AccentRed}>{errorMessage}</Text>

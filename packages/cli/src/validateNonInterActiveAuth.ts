@@ -48,7 +48,7 @@ export async function validateNonInteractiveAuth(
     process.exit(1);
   }
 
-  const err = validateAuthMethod(effectiveAuthType);
+  const err = await validateAuthMethod(effectiveAuthType);
   if (err != null) {
     console.error(err);
     process.exit(1);

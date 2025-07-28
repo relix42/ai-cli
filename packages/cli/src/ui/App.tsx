@@ -235,11 +235,9 @@ const App = ({ config, settings, startupWarnings = [], version, initialPrompts =
 
   useEffect(() => {
     if (settings.merged.selectedAuthType) {
-      const error = validateAuthMethod(settings.merged.selectedAuthType);
-      if (error) {
+      validateAuthMethod(settings.merged.selectedAuthType).then(error => {
         setAuthError(error);
-        openAuthDialog();
-      }
+      });
     }
   }, [settings.merged.selectedAuthType, openAuthDialog, setAuthError]);
 
